@@ -25,7 +25,7 @@ public class AddNewCardUseCaseTest {
 
     @Test
     public void testExecute() {
-        Card card = new Card(UUID.randomUUID().toString(), "text", "translate");
+        Card card = new Card(UUID.randomUUID().toString(), "text", "translate", "EMPTY");
         new AddNewCardUseCase(cardRepository)
                 .execute(card, callback);
 
@@ -35,7 +35,7 @@ public class AddNewCardUseCaseTest {
 
     @Test
     public void noText() throws Exception {
-        Card card = new Card(UUID.randomUUID().toString(), "", "translate");
+        Card card = new Card(UUID.randomUUID().toString(), "", "translate", "EMPTY");
         new AddNewCardUseCase(cardRepository)
                 .execute(card, callback);
 
@@ -44,7 +44,7 @@ public class AddNewCardUseCaseTest {
 
     @Test
     public void noTranslate() throws Exception {
-        Card card = new Card(UUID.randomUUID().toString(), "text", "");
+        Card card = new Card(UUID.randomUUID().toString(), "text", "", "EMPTY");
         new AddNewCardUseCase(cardRepository)
                 .execute(card, callback);
 

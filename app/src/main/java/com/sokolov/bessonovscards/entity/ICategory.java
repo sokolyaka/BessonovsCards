@@ -1,7 +1,5 @@
 package com.sokolov.bessonovscards.entity;
 
-import java.util.List;
-
 public interface ICategory {
     String uuid();
 
@@ -9,5 +7,4 @@ public interface ICategory {
 
     Schedule schedule();
 
-    List<String> cards();
 }
