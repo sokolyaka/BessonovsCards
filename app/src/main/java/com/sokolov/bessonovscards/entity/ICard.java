@@ -8,5 +8,5 @@ public interface ICard {
 
     String translate();
 
-    String categoryId();
+    String categoryName();
 }
