@@ -3,12 +3,12 @@ package com.sokolov.bessonovscards.domain;
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.entity.Card;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentCaptor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.UUID;
 
 import static org.mockito.Mockito.verify;
 
@@ -25,28 +25,28 @@ public class AddNewCardUseCaseTest {
 
     @Test
     public void testExecute() {
-        Card card = new Card(UUID.randomUUID().toString(), "text", "translate", "EMPTY");
         new AddNewCardUseCase(cardRepository)
-                .execute(card, callback);
+                .execute("text", "translate", callback);
 
-        verify(cardRepository).save(card);
+        ArgumentCaptor<Card> captor = ArgumentCaptor.forClass(Card.class);
+        verify(cardRepository).save(captor.capture());
+        Assert.assertEquals(captor.getValue().text(), "text");
+        Assert.assertEquals(captor.getValue().translate(), "translate");
         verify(callback).onSuccess();
     }
 
     @Test
     public void noText() throws Exception {
-        Card card = new Card(UUID.randomUUID().toString(), "", "translate", "EMPTY");
         new AddNewCardUseCase(cardRepository)
-                .execute(card, callback);
+                .execute("", "translate" , callback);
 
         verify(callback).onError("No text");
     }
 
     @Test
     public void noTranslate() throws Exception {
-        Card card = new Card(UUID.randomUUID().toString(), "text", "", "EMPTY");
         new AddNewCardUseCase(cardRepository)
-                .execute(card, callback);
+                .execute("text", "", callback);
 
         verify(callback).onError("No translate");
     }

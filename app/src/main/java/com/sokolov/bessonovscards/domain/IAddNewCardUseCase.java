@@ -1,10 +1,8 @@
 package com.sokolov.bessonovscards.domain;
 
-import com.sokolov.bessonovscards.entity.ICard;
-
 public interface IAddNewCardUseCase {
 
-    void execute(ICard card, Callback callback);
+    void execute(String text, String translate, Callback callback);
 
     interface Callback {
         void onSuccess();

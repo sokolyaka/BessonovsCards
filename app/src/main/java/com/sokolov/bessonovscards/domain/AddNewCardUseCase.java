@@ -1,26 +1,32 @@
 package com.sokolov.bessonovscards.domain;
 
-import android.text.TextUtils;
-
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
-import com.sokolov.bessonovscards.entity.ICard;
+import com.sokolov.bessonovscards.entity.Card;
+import com.sokolov.bessonovscards.utils.Text;
+
+import java.util.UUID;
 
 public class AddNewCardUseCase implements IAddNewCardUseCase {
     private final ICardRepository cardRepository;
 
     public AddNewCardUseCase(ICardRepository cardRepository) {
-
         this.cardRepository = cardRepository;
     }
 
     @Override
-    public void execute(ICard card, Callback callback) {
-        if (TextUtils.isEmpty(card.text())) {
+    public void execute(String text, String translate, Callback callback) {
+        if (new Text(text).isEmpty()) {
             callback.onError("No text");
-        } else if (TextUtils.isEmpty(card.translate())) {
+        } else if (new Text(translate).isEmpty()) {
             callback.onError("No translate");
         } else {
-            cardRepository.save(card);
+            cardRepository.save(
+                    new Card(
+                            UUID.randomUUID().toString(),
+                            text,
+                            translate,
+                            ""));
+
             callback.onSuccess();
         }
     }
