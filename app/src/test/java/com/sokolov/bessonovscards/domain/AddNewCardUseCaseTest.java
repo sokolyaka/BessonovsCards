@@ -1,6 +1,8 @@
 package com.sokolov.bessonovscards.domain;
 
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
+import com.sokolov.bessonovscards.domain.home.AddNewCardUseCase;
+import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
 import com.sokolov.bessonovscards.entity.Card;
 
 import org.junit.Assert;

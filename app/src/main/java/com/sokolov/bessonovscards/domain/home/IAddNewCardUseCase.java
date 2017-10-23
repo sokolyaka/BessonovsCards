@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.domain;
+package com.sokolov.bessonovscards.domain.home;
 
 public interface IAddNewCardUseCase {
 
