@@ -3,15 +3,19 @@ package com.sokolov.bessonovscards.entity;
 public class Category implements ICategory {
 
 
+    private final String name;
+    private final int ordinal;
     private final Schedule schedule;
 
-    public Category(Schedule schedule) {
+    public Category(String name, int ordinal, Schedule schedule) {
+        this.name = name;
+        this.ordinal = ordinal;
         this.schedule = schedule;
     }
 
     @Override
     public String name() {
-        return schedule.name();
+        return name;
     }
 
     @Override
@@ -21,6 +25,6 @@ public class Category implements ICategory {
 
     @Override
     public int ordinal() {
-        return schedule.ordinal();
+        return ordinal;
     }
 }

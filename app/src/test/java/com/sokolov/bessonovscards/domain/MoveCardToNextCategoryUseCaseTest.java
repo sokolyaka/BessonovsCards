@@ -38,7 +38,7 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                Schedule.EMPTY.name()),
+                                Schedule.TODAY.name()),
                         callback);
         verify(cardRepository)
                 .save(
@@ -46,7 +46,7 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                Schedule.TODAY.name()));
+                                Schedule.TOMORROW.name()));
         verify(callback).onSuccess();
     }
 
@@ -60,7 +60,7 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                Schedule.values()[Schedule.values().length - 1].name()),
+                                "LEARNED"),
                         callback);
         verify(callback).onError(any(Exception.class));
     }
