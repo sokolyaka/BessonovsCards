@@ -2,6 +2,8 @@ package com.sokolov.bessonovscards.domain;
 
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.data.repository.MockCategoryRepository;
+import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
+import com.sokolov.bessonovscards.domain.cards.MoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.Schedule;
 

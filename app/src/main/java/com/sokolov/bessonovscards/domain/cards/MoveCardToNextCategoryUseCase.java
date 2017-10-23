@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.domain;
+package com.sokolov.bessonovscards.domain.cards;
 
 import com.sokolov.bessonovscards.data.exceptions.NotFoundException;
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
