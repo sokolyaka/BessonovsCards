@@ -52,4 +52,23 @@ public class HomePresenterTest {
         verify(homeView).setCategories(anyList());
         verify(homeView).hideSpinner();
     }
+
+    @Test
+    public void testGetCategoriesOnError() {
+        doAnswer(
+                invocation -> {
+                    ((IGetAllCategoriesUseCase.Callback)
+                            invocation.getArguments()[0])
+                            .onError(
+                                    new RuntimeException("Exception message"));
+                    return null;
+                })
+                .when(homeInteractor)
+                .getAllCategories(any(IGetAllCategoriesUseCase.Callback.class));
+
+        homePresenter.onResume();
+
+        verify(homeView).hideSpinner();
+        verify(homeView).showError("Exception message");
+    }
 }

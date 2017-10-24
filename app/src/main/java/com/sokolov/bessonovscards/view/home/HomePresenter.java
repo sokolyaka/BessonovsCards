@@ -33,7 +33,8 @@ public class HomePresenter implements IHomePresenter {
 
                             @Override
                             public void onError(Exception e) {
-
+                                homeView.hideSpinner();
+                                homeView.showError(e.getMessage());
                             }
                         }
                 );
