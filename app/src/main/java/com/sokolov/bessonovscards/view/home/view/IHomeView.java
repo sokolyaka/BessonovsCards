@@ -1,4 +1,6 @@
-package com.sokolov.bessonovscards.view.home;
+package com.sokolov.bessonovscards.view.home.view;
+
+import com.sokolov.bessonovscards.view.home.model.ICategoryDisplayModel;
 
 import java.util.List;
 

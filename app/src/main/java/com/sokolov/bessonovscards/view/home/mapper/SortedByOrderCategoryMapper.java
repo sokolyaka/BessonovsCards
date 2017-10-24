@@ -1,7 +1,7 @@
 package com.sokolov.bessonovscards.view.home.mapper;
 
 import com.sokolov.bessonovscards.entity.ICategory;
-import com.sokolov.bessonovscards.view.home.ICategoryDisplayModel;
+import com.sokolov.bessonovscards.view.home.model.ICategoryDisplayModel;
 
 import java.util.Collections;
 import java.util.List;

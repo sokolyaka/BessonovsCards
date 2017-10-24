@@ -1,8 +1,10 @@
-package com.sokolov.bessonovscards.view.home;
+package com.sokolov.bessonovscards.view.home.presenter;
 
 import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
 import com.sokolov.bessonovscards.entity.ICategory;
+import com.sokolov.bessonovscards.view.home.interactor.IHomeInteractor;
+import com.sokolov.bessonovscards.view.home.view.IHomeView;
 import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
 
 import java.util.List;

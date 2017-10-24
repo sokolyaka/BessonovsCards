@@ -5,6 +5,7 @@ import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.Category;
 import com.sokolov.bessonovscards.entity.Schedule;
 import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
+import com.sokolov.bessonovscards.view.home.model.CategoryDisplayModelFromEntity;
 
 import org.junit.Before;
 import org.junit.Test;

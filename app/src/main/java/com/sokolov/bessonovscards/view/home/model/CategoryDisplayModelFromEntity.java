@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.home;
+package com.sokolov.bessonovscards.view.home.model;
 
 import com.sokolov.bessonovscards.entity.ICategory;
 import com.sokolov.bessonovscards.entity.Schedule;

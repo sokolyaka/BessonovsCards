@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.home;
+package com.sokolov.bessonovscards.view.home.interactor;
 
 import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;

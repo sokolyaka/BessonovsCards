@@ -2,7 +2,11 @@ package com.sokolov.bessonovscards.view.home;
 
 import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
+import com.sokolov.bessonovscards.view.home.interactor.IHomeInteractor;
 import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
+import com.sokolov.bessonovscards.view.home.presenter.HomePresenter;
+import com.sokolov.bessonovscards.view.home.presenter.IHomePresenter;
+import com.sokolov.bessonovscards.view.home.view.IHomeView;
 
 import org.junit.Before;
 import org.junit.Test;

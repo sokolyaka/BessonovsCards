@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.home;
+package com.sokolov.bessonovscards.view.home.presenter;
 
 public interface IHomePresenter {
     void onResume();
