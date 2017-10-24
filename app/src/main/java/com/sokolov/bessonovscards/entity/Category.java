@@ -27,4 +27,34 @@ public class Category implements ICategory {
     public int ordinal() {
         return ordinal;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Category category = (Category) o;
+
+        if (ordinal != category.ordinal) return false;
+        if (name != null ? !name.equals(category.name) : category.name != null) return false;
+        return schedule == category.schedule;
+
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + ordinal;
+        result = 31 * result + (schedule != null ? schedule.hashCode() : 0);
+        return result;
+    }
+
+    @Override
+    public String toString() {
+        return "Category{" +
+                "name='" + name + '\'' +
+                ", ordinal=" + ordinal +
+                ", schedule=" + schedule +
+                '}';
+    }
 }
