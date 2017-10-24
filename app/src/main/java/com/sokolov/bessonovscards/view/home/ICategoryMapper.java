@@ -6,4 +6,6 @@ import java.util.List;
 
 public interface ICategoryMapper {
     List<ICategoryDisplayModel> toDisplayModels(List<ICategory> categories);
+
+    ICategoryDisplayModel toDisplayModel(ICategory category);
 }
