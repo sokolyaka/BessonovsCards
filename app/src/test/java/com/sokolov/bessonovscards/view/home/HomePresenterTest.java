@@ -12,6 +12,7 @@ import org.mockito.MockitoAnnotations;
 import static com.sokolov.bessonovscards.view.TestData.CATEGORIES;
 import static org.mockito.Matchers.any;
 import static org.mockito.Matchers.anyList;
+import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.doAnswer;
 import static org.mockito.Mockito.verify;
@@ -85,5 +86,18 @@ public class HomePresenterTest {
                         eq("new text"),
                         eq("new translate"),
                         any(IAddNewCardUseCase.Callback.class));
+    }
+
+    @Test
+    public void testOnAddNewCardSuccess() {
+        doAnswer(invocation -> {
+            ((IAddNewCardUseCase.Callback) invocation.getArguments()[2]).onSuccess();
+            return null;
+        }).when(homeInteractor).addNewCard(anyString(), anyString(), any());
+
+        homePresenter.onAddNewCard("new text", "new translate");
+
+        verify(homeView).hideSpinner();
+        verify(homeView).showSuccessMessage();
     }
 }

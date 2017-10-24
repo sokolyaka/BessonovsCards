@@ -52,7 +52,8 @@ public class HomePresenter implements IHomePresenter {
                         new IAddNewCardUseCase.Callback() {
                             @Override
                             public void onSuccess() {
-
+                                homeView.hideSpinner();
+                                homeView.showSuccessMessage();
                             }
 
                             @Override

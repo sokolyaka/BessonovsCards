@@ -10,4 +10,6 @@ public interface IHomeView {
     void setCategories(List<ICategoryDisplayModel> categories);
 
     void showError(String errorMessage);
+
+    void showSuccessMessage();
 }
