@@ -4,6 +4,7 @@ import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.Category;
 import com.sokolov.bessonovscards.entity.Schedule;
+import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
 
 import org.junit.Before;
 import org.junit.Test;

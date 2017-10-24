@@ -1,6 +1,7 @@
 package com.sokolov.bessonovscards.view.home;
 
 import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
+import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
 
 import org.junit.Before;
 import org.junit.Test;

@@ -2,6 +2,8 @@ package com.sokolov.bessonovscards.view.home;
 
 import com.sokolov.bessonovscards.entity.Category;
 import com.sokolov.bessonovscards.entity.Schedule;
+import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
+import com.sokolov.bessonovscards.view.home.mapper.SortedByOrderCategoryMapper;
 
 import org.junit.Assert;
 import org.junit.Before;

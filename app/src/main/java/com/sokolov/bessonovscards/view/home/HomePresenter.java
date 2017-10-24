@@ -2,6 +2,7 @@ package com.sokolov.bessonovscards.view.home;
 
 import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
 import com.sokolov.bessonovscards.entity.ICategory;
+import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
 
 import java.util.List;
 
