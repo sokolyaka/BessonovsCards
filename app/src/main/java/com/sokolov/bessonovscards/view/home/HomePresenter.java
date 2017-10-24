@@ -1,5 +1,6 @@
 package com.sokolov.bessonovscards.view.home;
 
+import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
 import com.sokolov.bessonovscards.entity.ICategory;
 import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
@@ -39,5 +40,25 @@ public class HomePresenter implements IHomePresenter {
                             }
                         }
                 );
+    }
+
+    @Override
+    public void onAddNewCard(String text, String translate) {
+        homeView.showSpinner();
+        homeInteractor
+                .addNewCard(
+                        text,
+                        translate,
+                        new IAddNewCardUseCase.Callback() {
+                            @Override
+                            public void onSuccess() {
+
+                            }
+
+                            @Override
+                            public void onError(String message) {
+
+                            }
+                        });
     }
 }
