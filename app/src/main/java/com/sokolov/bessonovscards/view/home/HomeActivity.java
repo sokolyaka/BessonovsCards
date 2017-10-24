@@ -1,9 +1,11 @@
-package com.sokolov.bessonovscards;
+package com.sokolov.bessonovscards.view.home;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
-public class MainActivity extends AppCompatActivity {
+import com.sokolov.bessonovscards.R;
+
+public class HomeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
