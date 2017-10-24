@@ -100,4 +100,17 @@ public class HomePresenterTest {
         verify(homeView).hideSpinner();
         verify(homeView).showSuccessMessage();
     }
+
+    @Test
+    public void testOnAddNewCardError() {
+        doAnswer(invocation -> {
+            ((IAddNewCardUseCase.Callback) invocation.getArguments()[2]).onError("no text");
+            return null;
+        }).when(homeInteractor).addNewCard(anyString(), anyString(), any());
+
+        homePresenter.onAddNewCard("new text", "new translate");
+
+        verify(homeView).hideSpinner();
+        verify(homeView).showError("no text");
+    }
 }
