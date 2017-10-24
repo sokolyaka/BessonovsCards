@@ -7,6 +7,7 @@ import com.sokolov.bessonovscards.entity.ICategory;
 import com.sokolov.bessonovscards.entity.Schedule;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ public class MockCategoryRepository implements ICategoryRepository {
 
     private static final List<ICategory> CATEGORIES = new ArrayList<>();
 
-    static  {
+    static {
         CATEGORIES.add(new Category("UNSET", 0, Schedule.EMPTY));
         CATEGORIES.add(new Category("TODAY", 1, Schedule.TODAY));
         CATEGORIES.add(new Category("TOMORROW", 2, Schedule.TOMORROW));
@@ -40,5 +41,12 @@ public class MockCategoryRepository implements ICategoryRepository {
         } catch (IndexOutOfBoundsException e) {
             throw new NotFoundException();
         }
+    }
+
+    @Override
+    public List<ICategory> getAll() {
+        ArrayList<ICategory> answer = new ArrayList<>();
+        Collections.copy(answer, CATEGORIES);
+        return answer;
     }
 }
