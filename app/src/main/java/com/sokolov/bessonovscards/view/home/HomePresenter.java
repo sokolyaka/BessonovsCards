@@ -9,10 +9,12 @@ public class HomePresenter implements IHomePresenter {
 
     private final IHomeView homeView;
     private final IHomeInteractor homeInteractor;
+    private final ICategoryMapper categoryMapper;
 
-    public HomePresenter(IHomeView homeView, IHomeInteractor homeInteractor) {
+    public HomePresenter(IHomeView homeView, IHomeInteractor homeInteractor, ICategoryMapper categoryMapper) {
         this.homeView = homeView;
         this.homeInteractor = homeInteractor;
+        this.categoryMapper = categoryMapper;
     }
 
     @Override
@@ -23,7 +25,10 @@ public class HomePresenter implements IHomePresenter {
                         new IGetAllCategoriesUseCase.Callback() {
                             @Override
                             public void onSuccess(List<ICategory> categories) {
-
+                                homeView.setCategories(
+                                        categoryMapper.toDisplayModels(
+                                                categories));
+                                homeView.hideSpinner();
                             }
 
                             @Override
