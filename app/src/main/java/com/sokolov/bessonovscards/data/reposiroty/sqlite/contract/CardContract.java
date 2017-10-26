@@ -1,6 +1,6 @@
 package com.sokolov.bessonovscards.data.reposiroty.sqlite.contract;
 
-import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CardContract.Entity.COLUMN_COLUMN_NAME;
+import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CardContract.Entity.COLUMN_CATEGORY_NAME;
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CardContract.Entity.COLUMN_ID;
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CardContract.Entity.COLUMN_TEXT;
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CardContract.Entity.COLUMN_TRANSLATE;
@@ -17,7 +17,7 @@ public class CardContract {
         public static final String COLUMN_ID = "id";
         public static final String COLUMN_TEXT = "text";
         public static final String COLUMN_TRANSLATE = "translate";
-        public static final String COLUMN_COLUMN_NAME = "columnName";
+        public static final String COLUMN_CATEGORY_NAME = "categoryName";
 
         private Entity() {
         }
@@ -28,7 +28,7 @@ public class CardContract {
                     COLUMN_ID + " " + INTEGER_TYPE + " " + PRIMARY_KEY + "," +
                     COLUMN_TEXT + TEXT_TYPE + COMMA_SEP +
                     COLUMN_TRANSLATE + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_COLUMN_NAME + ")";
+                    COLUMN_CATEGORY_NAME + ")";
 
     public static final String SQL_DROP_TABLE =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
