@@ -2,6 +2,7 @@ package com.sokolov.bessonovscards.data.reposiroty.sqlite;
 
 import android.content.ContentValues;
 import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import com.sokolov.bessonovscards.data.exceptions.NotFoundException;
@@ -34,20 +35,19 @@ public class SqliteCardRepository implements ICardRepository {
         values.put(COLUMN_TRANSLATE, card.translate());
         values.put(COLUMN_CATEGORY_NAME, card.categoryName());
 
-        sqLiteOpenHelper
-                .getWritableDatabase()
-                .insert(
-                        TABLE_NAME,
-                        null,
-                        values);
+        SQLiteDatabase db = sqLiteOpenHelper.getWritableDatabase();
+        db.insert(TABLE_NAME, null, values);
+        db.close();
     }
 
     @Override
     public List<ICard> getAllByCategoryName(String categoryName) {
         Cursor cursor = null;
+        SQLiteDatabase db = null;
         try {
-            cursor = sqLiteOpenHelper
-                    .getReadableDatabase()
+            db = sqLiteOpenHelper
+                    .getReadableDatabase();
+            cursor = db
                     .rawQuery(
                             "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CATEGORY_NAME + " = " + categoryName,
                             null);
@@ -68,6 +68,9 @@ public class SqliteCardRepository implements ICardRepository {
         } finally {
             if (cursor != null) {
                 cursor.close();
+            }
+            if (db != null) {
+                db.close();
             }
         }
     }
