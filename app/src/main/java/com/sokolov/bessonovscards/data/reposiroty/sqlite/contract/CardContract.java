@@ -26,8 +26,8 @@ public class CardContract {
     public static final String SQL_CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     COLUMN_ID + " " + INTEGER_TYPE + " " + PRIMARY_KEY + "," +
-                    COLUMN_TEXT + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_TRANSLATE + TEXT_TYPE + COMMA_SEP +
+                    COLUMN_TEXT + " "+ TEXT_TYPE + COMMA_SEP +
+                    COLUMN_TRANSLATE + " "+ TEXT_TYPE + COMMA_SEP +
                     COLUMN_CATEGORY_NAME + ")";
 
     public static final String SQL_DROP_TABLE =

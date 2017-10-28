@@ -35,7 +35,7 @@ public class SqliteCategoryRepository implements ICategoryRepository {
                     .getReadableDatabase();
             cursor = db
                     .rawQuery(
-                            "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = " + name,
+                            "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_NAME + " = " + "'" + name + "'",
                             null);
 
             if (cursor.moveToFirst()) {

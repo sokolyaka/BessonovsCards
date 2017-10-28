@@ -49,7 +49,7 @@ public class SqliteCardRepository implements ICardRepository {
                     .getReadableDatabase();
             cursor = db
                     .rawQuery(
-                            "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CATEGORY_NAME + " = " + categoryName,
+                            "SELECT * FROM " + TABLE_NAME + " WHERE " + COLUMN_CATEGORY_NAME + " = " + "'" + categoryName + "'",
                             null);
 
             List<ICard> answer = new ArrayList<>();

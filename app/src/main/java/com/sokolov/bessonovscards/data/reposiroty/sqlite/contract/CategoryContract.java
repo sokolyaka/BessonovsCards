@@ -24,8 +24,8 @@ public class CategoryContract {
     public static final String SQL_CREATE_TABLE =
             "CREATE TABLE " + TABLE_NAME + " (" +
                     COLUMN_NAME + " " + TEXT_TYPE + " " + PRIMARY_KEY + "," +
-                    COLUMN_SCHEDULE + TEXT_TYPE + COMMA_SEP +
-                    COLUMN_ORDINAL + INTEGER_TYPE + ")";
+                    COLUMN_SCHEDULE + " "+ TEXT_TYPE + COMMA_SEP +
+                    COLUMN_ORDINAL + " "+ INTEGER_TYPE + ")";
 
     public static final String SQL_DROP_TABLE =
             "DROP TABLE IF EXISTS " + TABLE_NAME;
