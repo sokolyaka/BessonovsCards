@@ -30,7 +30,7 @@ public class CardsPresenter implements ICardsPresenter {
 
                             @Override
                             public void onError(Exception e) {
-                                cardsView.showError(e.getMessage());
+                                cardsView.showError(e.toString());
                             }
                         }
                 );
@@ -51,7 +51,7 @@ public class CardsPresenter implements ICardsPresenter {
 
                             @Override
                             public void onError(Exception e) {
-                                cardsView.showError(e.getMessage());
+                                cardsView.showError(e.toString());
                                 cardsView.hideSpinner();
                             }
                         }
@@ -73,7 +73,7 @@ public class CardsPresenter implements ICardsPresenter {
 
                             @Override
                             public void onError(Exception e) {
-                                cardsView.showError(e.getMessage());
+                                cardsView.showError(e.toString());
                                 cardsView.hideSpinner();
                             }
                         }
