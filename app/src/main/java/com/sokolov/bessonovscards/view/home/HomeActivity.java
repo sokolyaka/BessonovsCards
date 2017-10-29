@@ -1,5 +1,6 @@
 package com.sokolov.bessonovscards.view.home;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -13,6 +14,7 @@ import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCardRepository;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepository;
 import com.sokolov.bessonovscards.domain.home.AddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.GetAllCategoriesUseCase;
+import com.sokolov.bessonovscards.view.cards.CardsActivity;
 import com.sokolov.bessonovscards.view.home.adapter.CategoryAdapter;
 import com.sokolov.bessonovscards.view.home.interactor.HomeInteractor;
 import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
@@ -54,7 +56,15 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        categoryAdapter = new CategoryAdapter(new ArrayList<>());
+        categoryAdapter =
+                new CategoryAdapter(
+                        new ArrayList<>(),
+                        categoryName -> {
+                            Intent intent = new Intent(getBaseContext(), CardsActivity.class);
+                            intent.putExtra("EXTRA_CATEGORY_NAME", categoryName);
+                            startActivity(intent);
+                        });
+
         recyclerView.setAdapter(categoryAdapter);
         findViewById(R.id.fab)
                 .setOnClickListener(

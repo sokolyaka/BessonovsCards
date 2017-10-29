@@ -36,7 +36,7 @@ public class SqliteCardRepository implements ICardRepository {
         values.put(COLUMN_CATEGORY_NAME, card.categoryName());
 
         SQLiteDatabase db = sqLiteOpenHelper.getWritableDatabase();
-        db.insert(TABLE_NAME, null, values);
+        db.insertWithOnConflict(TABLE_NAME, null, values, SQLiteDatabase.CONFLICT_REPLACE);
         db.close();
     }
 
