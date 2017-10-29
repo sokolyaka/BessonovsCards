@@ -15,8 +15,12 @@ public class GetShuffleCardsByCategory implements IGetShuffleCardsByCategory {
 
     @Override
     public void execute(String categoryName, Callback callback) {
-        List<ICard> answer = cardRepository.getAllByCategoryName(categoryName);
-        Collections.shuffle(answer);
-        callback.onSuccess(answer);
+        try {
+            List<ICard> answer = cardRepository.getAllByCategoryName(categoryName);
+            Collections.shuffle(answer);
+            callback.onSuccess(answer);
+        } catch (Exception e) {
+            callback.onError(e);
+        }
     }
 }
