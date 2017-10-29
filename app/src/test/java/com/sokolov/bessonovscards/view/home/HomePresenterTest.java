@@ -10,7 +10,9 @@ import com.sokolov.bessonovscards.view.home.view.IHomeView;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.InOrder;
 import org.mockito.Mock;
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
 import static com.sokolov.bessonovscards.view.TestData.CATEGORIES;
@@ -98,11 +100,17 @@ public class HomePresenterTest {
             ((IAddNewCardUseCase.Callback) invocation.getArguments()[2]).onSuccess();
             return null;
         }).when(homeInteractor).addNewCard(anyString(), anyString(), any());
+        doAnswer(invocation -> {
+            ((IGetAllCategoriesUseCase.Callback) invocation.getArguments()[0]).onSuccess(CATEGORIES);
+            return null;
+        }).when(homeInteractor).getAllCategories(any());
 
         homePresenter.onAddNewCard("new text", "new translate");
 
-        verify(homeView).hideSpinner();
-        verify(homeView).showSuccessMessage();
+        InOrder homeViewOrder = Mockito.inOrder(homeView);
+        homeViewOrder.verify(homeView).setCategories(anyList());
+        homeViewOrder.verify(homeView).hideSpinner();
+        homeViewOrder.verify(homeView).showSuccessMessage();
     }
 
     @Test

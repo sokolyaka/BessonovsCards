@@ -4,8 +4,8 @@ import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
 import com.sokolov.bessonovscards.entity.ICategory;
 import com.sokolov.bessonovscards.view.home.interactor.IHomeInteractor;
-import com.sokolov.bessonovscards.view.home.view.IHomeView;
 import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
+import com.sokolov.bessonovscards.view.home.view.IHomeView;
 
 import java.util.List;
 
@@ -54,8 +54,24 @@ public class HomePresenter implements IHomePresenter {
                         new IAddNewCardUseCase.Callback() {
                             @Override
                             public void onSuccess() {
-                                homeView.hideSpinner();
-                                homeView.showSuccessMessage();
+                                homeInteractor
+                                        .getAllCategories(
+                                                new IGetAllCategoriesUseCase.Callback() {
+                                                    @Override
+                                                    public void onSuccess(List<ICategory> categories) {
+                                                        homeView.setCategories(
+                                                                categoryMapper.toDisplayModels(
+                                                                        categories));
+                                                        homeView.hideSpinner();
+                                                        homeView.showSuccessMessage();
+                                                    }
+
+                                                    @Override
+                                                    public void onError(Exception e) {
+                                                        homeView.hideSpinner();
+                                                        homeView.showError(e.getMessage());
+                                                    }
+                                                });
                             }
 
                             @Override
