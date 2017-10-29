@@ -41,8 +41,8 @@ public class GetShuffleCardsForCategoryTest {
         when(cardRepository.getAllByCategoryName("categoryName"))
                 .thenReturn(dbAnswer);
 
-        new GetShuffleCardsByCategory(cardRepository)
-                .execute("categoryName", callback);
+        new GetShuffleCardsByCategory(cardRepository, "categoryName")
+                .execute(callback);
 
         ArgumentCaptor<List> captor = ArgumentCaptor.forClass(List.class);
         verify(callback).onSuccess(captor.capture());
@@ -67,8 +67,8 @@ public class GetShuffleCardsForCategoryTest {
         when(cardRepository.getAllByCategoryName("categoryName"))
                 .thenThrow(NotFoundException.class);
 
-        new GetShuffleCardsByCategory(cardRepository)
-                .execute("categoryName", callback);
+        new GetShuffleCardsByCategory(cardRepository, "categoryName")
+                .execute(callback);
         verify(callback).onError(any(NotFoundException.class));
     }
 }

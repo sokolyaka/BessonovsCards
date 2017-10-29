@@ -5,7 +5,7 @@ import com.sokolov.bessonovscards.entity.ICard;
 import java.util.List;
 
 public interface IGetShuffleCardsByCategory {
-    void execute(String categoryName, Callback callback);
+    void execute(Callback callback);
 
     interface Callback {
         void onSuccess(List<ICard> cards);

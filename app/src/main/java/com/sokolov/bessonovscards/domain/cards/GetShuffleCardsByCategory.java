@@ -8,13 +8,15 @@ import java.util.List;
 
 public class GetShuffleCardsByCategory implements IGetShuffleCardsByCategory {
     private final ICardRepository cardRepository;
+    private final String categoryName;
 
-    public GetShuffleCardsByCategory(ICardRepository cardRepository) {
+    public GetShuffleCardsByCategory(ICardRepository cardRepository, String categoryName) {
         this.cardRepository = cardRepository;
+        this.categoryName = categoryName;
     }
 
     @Override
-    public void execute(String categoryName, Callback callback) {
+    public void execute(Callback callback) {
         try {
             List<ICard> answer = cardRepository.getAllByCategoryName(categoryName);
             Collections.shuffle(answer);
