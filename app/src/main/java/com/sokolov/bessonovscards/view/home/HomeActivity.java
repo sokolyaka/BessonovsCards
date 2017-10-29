@@ -19,6 +19,7 @@ import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
 import com.sokolov.bessonovscards.view.home.model.ICategoryDisplayModel;
 import com.sokolov.bessonovscards.view.home.presenter.HomePresenter;
 import com.sokolov.bessonovscards.view.home.view.IHomeView;
+import com.sokolov.bessonovscards.view.home.widget.NewCardDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,6 +56,17 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         categoryAdapter = new CategoryAdapter(new ArrayList<>());
         recyclerView.setAdapter(categoryAdapter);
+        findViewById(R.id.fab)
+                .setOnClickListener(
+                        v -> new NewCardDialog()
+                                .show(
+                                        getSupportFragmentManager(),
+                                        "tag",
+                                        (text, translate) ->
+                                                homePresenter
+                                                        .onAddNewCard(
+                                                                text.toString(),
+                                                                translate.toString())));
     }
 
     @Override
