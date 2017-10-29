@@ -32,6 +32,7 @@ public class AddNewCardUseCaseTest {
         verify(cardRepository).save(captor.capture());
         Assert.assertEquals(captor.getValue().text(), "text");
         Assert.assertEquals(captor.getValue().translate(), "translate");
+        Assert.assertEquals(captor.getValue().categoryName(), "not set");
         verify(callback).onSuccess();
     }
 
