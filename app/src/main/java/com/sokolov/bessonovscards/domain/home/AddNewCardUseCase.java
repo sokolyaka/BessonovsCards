@@ -25,7 +25,7 @@ public class AddNewCardUseCase implements IAddNewCardUseCase {
                             UUID.randomUUID().toString(),
                             text,
                             translate,
-                            ""));
+                            "not set"));
 
             callback.onSuccess();
         }

@@ -11,7 +11,7 @@ import com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CategoryContra
 public class BessonovCardsSQLiteOpenHelper extends SQLiteOpenHelper {
 
     private static final String BESSONOV_CARDS_DB = "BessonovCards.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;
 
     public BessonovCardsSQLiteOpenHelper(Context context) {
         super(context, BESSONOV_CARDS_DB, null, DATABASE_VERSION);
