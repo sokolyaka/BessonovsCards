@@ -12,9 +12,11 @@ import java.util.List;
 public class CategoryAdapter extends RecyclerView.Adapter {
 
     private final List<ICategoryDisplayModel> categories;
+    private final OnItemClickListener onItemClickListener;
 
-    public CategoryAdapter(List<ICategoryDisplayModel> categories) {
+    public CategoryAdapter(List<ICategoryDisplayModel> categories, OnItemClickListener onItemClickListener) {
         this.categories = categories;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -27,7 +29,10 @@ public class CategoryAdapter extends RecyclerView.Adapter {
 
     @Override
     public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
-        ((ViewHolder) holder).bind(categories.get(position));
+        ((ViewHolder) holder)
+                .bind(
+                        categories.get(position),
+                        onItemClickListener);
     }
 
     @Override
