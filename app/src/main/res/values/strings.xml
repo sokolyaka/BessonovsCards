@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">BessonovsCards</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="translate">translate</string>
+    <string name="text">text</string>
+    <string name="add_new_card">add</string>
+    <string name="cancel">cancel</string>
 </resources>
