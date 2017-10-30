@@ -26,7 +26,6 @@ import static org.mockito.Mockito.verify;
 public class CardsPresenterTest {
 
     private ICardsPresenter cardsPresenter;
-    private String categoryName;
     @Mock
     private ICardsInteractor cardsInteractor;
     @Mock
@@ -35,7 +34,6 @@ public class CardsPresenterTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        categoryName = "categoryName";
         cardsPresenter = new CardsPresenter(cardsView, cardsInteractor);
     }
 
