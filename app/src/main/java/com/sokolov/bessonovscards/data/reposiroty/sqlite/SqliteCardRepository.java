@@ -74,4 +74,9 @@ public class SqliteCardRepository implements ICardRepository {
             }
         }
     }
+
+    @Override
+    public void delete(String cardUuid) {
+
+    }
 }

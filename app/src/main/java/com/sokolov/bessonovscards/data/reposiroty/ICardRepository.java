@@ -9,4 +9,6 @@ public interface ICardRepository {
     void save(ICard card) throws NotFoundException;
 
     List<ICard> getAllByCategoryName(String categoryName);
+
+    void delete(String cardUuid);
 }
