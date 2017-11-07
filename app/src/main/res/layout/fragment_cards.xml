@@ -68,30 +68,37 @@
         android:layout_height="match_parent"
         android:visibility="invisible">
 
-        <EditText
-            android:id="@+id/et_text"
+        <RelativeLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:layout_margin="10dp"
-            android:enabled="true"
-            android:focusable="true"
-            android:longClickable="true"
-            android:textIsSelectable="true"
-            android:textSize="@dimen/text_size"/>
+            android:layout_centerInParent="true">
 
-        <EditText
-            android:id="@+id/et_translate"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/et_text"
-            android:layout_centerInParent="true"
-            android:layout_margin="10dp"
-            android:enabled="true"
-            android:focusable="true"
-            android:longClickable="true"
-            android:textIsSelectable="true"
-            android:textSize="@dimen/text_size"/>
+            <EditText
+                android:id="@+id/et_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:enabled="true"
+                android:focusable="true"
+                android:longClickable="true"
+                android:textIsSelectable="true"
+                android:textSize="@dimen/text_size"/>
+
+            <EditText
+                android:id="@+id/et_translate"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/et_text"
+                android:layout_centerHorizontal="true"
+                android:layout_margin="10dp"
+                android:enabled="true"
+                android:focusable="true"
+                android:longClickable="true"
+                android:textIsSelectable="true"
+                android:textSize="@dimen/text_size"/>
+        </RelativeLayout>
+
 
         <Button
             android:id="@+id/btn_confirm_edit_card"
