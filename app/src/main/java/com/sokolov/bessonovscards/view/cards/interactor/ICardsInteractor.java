@@ -1,5 +1,6 @@
 package com.sokolov.bessonovscards.view.cards.interactor;
 
+import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
@@ -12,4 +13,6 @@ public interface ICardsInteractor {
     void onMoveCardToNextCategory(ICard card, IMoveCardToNextCategoryUseCase.Callback callback);
 
     void onMoveCardToPreviewsCategory(ICard card, IMoveCardToPreviewsCategoryUseCase.Callback callback);
+
+    void onEditCard(ICard card, IEditCardUseCase.Callback callback);
 }

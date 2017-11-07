@@ -1,5 +1,6 @@
 package com.sokolov.bessonovscards.view.cards.presenter;
 
+import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
@@ -126,5 +127,19 @@ public class CardsPresenterTest {
         cardsViewOrder.verify(cardsView).showSpinner();
         cardsViewOrder.verify(cardsView).showError(anyString());
         cardsViewOrder.verify(cardsView).hideSpinner();
+    }
+
+    @Test
+    public void testOnEditCardSuccess() {
+        Card card = new Card("uuid", "text", "translate", "categoryName");
+        doAnswer(invocation -> {
+            invocation.getArgumentAt(1, IEditCardUseCase.Callback.class).onSuccess(card);
+            return null;
+        }).when(cardsInteractor).onEditCard(any(), any());
+
+        cardsPresenter.onEditCard(card);
+        verify(cardsView).showSpinner();
+        verify(cardsInteractor).onEditCard(eq(card), any());
+        verify(cardsView).updateCard(eq(card));
     }
 }

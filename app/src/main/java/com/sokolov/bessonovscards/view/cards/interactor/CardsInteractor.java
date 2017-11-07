@@ -1,5 +1,6 @@
 package com.sokolov.bessonovscards.view.cards.interactor;
 
+import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
@@ -9,15 +10,17 @@ public class CardsInteractor implements ICardsInteractor {
     private final IGetShuffleCardsByCategory getShuffleCardsByCategory;
     private final IMoveCardToNextCategoryUseCase moveCardToNextCategoryUseCase;
     private final IMoveCardToPreviewsCategoryUseCase moveCardToPreviewsCategoryUseCase;
+    private final IEditCardUseCase editCardUseCase;
 
     public CardsInteractor(
             IGetShuffleCardsByCategory getShuffleCardsByCategory,
             IMoveCardToNextCategoryUseCase moveCardToNextCategoryUseCase,
-            IMoveCardToPreviewsCategoryUseCase moveCardToPreviewsCategoryUseCase) {
+            IMoveCardToPreviewsCategoryUseCase moveCardToPreviewsCategoryUseCase, IEditCardUseCase editCardUseCase) {
 
         this.getShuffleCardsByCategory = getShuffleCardsByCategory;
         this.moveCardToNextCategoryUseCase = moveCardToNextCategoryUseCase;
         this.moveCardToPreviewsCategoryUseCase = moveCardToPreviewsCategoryUseCase;
+        this.editCardUseCase = editCardUseCase;
     }
 
     @Override
@@ -33,5 +36,10 @@ public class CardsInteractor implements ICardsInteractor {
     @Override
     public void onMoveCardToPreviewsCategory(ICard card, IMoveCardToPreviewsCategoryUseCase.Callback callback) {
         moveCardToPreviewsCategoryUseCase.execute(card, callback);
+    }
+
+    @Override
+    public void onEditCard(ICard card, IEditCardUseCase.Callback callback) {
+        editCardUseCase.execute(card, callback);
     }
 }

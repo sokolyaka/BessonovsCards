@@ -8,42 +8,98 @@
                 android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context="com.sokolov.bessonovscards.view.cards.CardsActivity$PlaceholderFragment">
 
-    <TextView
-        android:id="@+id/tv_text"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:enabled="true"
-        android:focusable="true"
-        android:longClickable="true"
-        android:textIsSelectable="true"
-        android:textSize="@dimen/text_size"/>
+    <RelativeLayout
+        android:id="@+id/rl_static_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/tv_translate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:enabled="true"
-        android:focusable="true"
-        android:longClickable="true"
-        android:textIsSelectable="true"
-        android:textSize="@dimen/text_size"
-        android:visibility="invisible"/>
+        <TextView
+            android:id="@+id/tv_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:longClickable="true"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/text_size"/>
 
-    <Button
-        android:id="@+id/btn_preview_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:text="to previews category"/>
+        <TextView
+            android:id="@+id/tv_translate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:enabled="true"
+            android:focusable="true"
+            android:longClickable="true"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/text_size"
+            android:visibility="invisible"/>
 
-    <Button
-        android:id="@+id/btn_next_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:text="to next category"/>
+        <Button
+            android:id="@+id/btn_preview_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="to previews category"/>
 
+        <Button
+            android:id="@+id/btn_next_category"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="to next category"/>
+
+        <Button
+            android:id="@+id/btn_edit_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:text="edit"/>
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/rl_editable_text"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="invisible">
+
+        <EditText
+            android:id="@+id/et_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:enabled="true"
+            android:focusable="true"
+            android:longClickable="true"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/text_size"/>
+
+        <EditText
+            android:id="@+id/et_translate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/et_text"
+            android:layout_centerInParent="true"
+            android:layout_margin="10dp"
+            android:enabled="true"
+            android:focusable="true"
+            android:longClickable="true"
+            android:textIsSelectable="true"
+            android:textSize="@dimen/text_size"/>
+
+        <Button
+            android:id="@+id/btn_confirm_edit_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:text="confirm editing"/>
+
+    </RelativeLayout>
 </RelativeLayout>

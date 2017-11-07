@@ -14,4 +14,6 @@ public interface ICardsView {
     void showSpinner();
 
     void hideSpinner();
+
+    void updateCard(ICard card);
 }

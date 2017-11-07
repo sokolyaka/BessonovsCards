@@ -1,5 +1,6 @@
 package com.sokolov.bessonovscards.view.cards.presenter;
 
+import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
@@ -78,5 +79,26 @@ public class CardsPresenter implements ICardsPresenter {
                             }
                         }
                 );
+    }
+
+    @Override
+    public void onEditCard(ICard card) {
+        cardsView.showSpinner();
+        cardsInteractor
+                .onEditCard(
+                        card,
+                        new IEditCardUseCase.Callback() {
+                            @Override
+                            public void onSuccess(ICard card) {
+                                cardsView.updateCard(card);
+                                cardsView.hideSpinner();
+                            }
+
+                            @Override
+                            public void onError(Exception e) {
+                                cardsView.showError(e.toString());
+                                cardsView.hideSpinner();
+                            }
+                        });
     }
 }

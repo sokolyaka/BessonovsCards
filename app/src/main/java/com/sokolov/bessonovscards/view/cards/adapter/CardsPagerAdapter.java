@@ -2,17 +2,13 @@ package com.sokolov.bessonovscards.view.cards.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.sokolov.bessonovscards.entity.ICard;
 
 import java.util.List;
 
-/**
- * A {@link FragmentPagerAdapter} that returns a fragment corresponding to
- * one of the sections/tabs/pages.
- */
-public class CardsPagerAdapter extends FragmentPagerAdapter {
+public class CardsPagerAdapter extends FragmentStatePagerAdapter {
 
     private final List<ICard> cards;
 
@@ -34,5 +30,18 @@ public class CardsPagerAdapter extends FragmentPagerAdapter {
     @Override
     public CharSequence getPageTitle(int position) {
         return cards.get(position).categoryName();
+    }
+
+    public void updateCard(ICard newCard) {
+        cards.replaceAll(
+                oldCard ->
+                        oldCard.id().equals(newCard.id())
+                                ? newCard : oldCard);
+        notifyDataSetChanged();
+    }
+
+    @Override
+    public int getItemPosition(Object object) {
+        return POSITION_NONE;
     }
 }

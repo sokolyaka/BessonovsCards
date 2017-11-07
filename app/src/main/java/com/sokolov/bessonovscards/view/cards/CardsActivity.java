@@ -9,11 +9,13 @@ import com.sokolov.bessonovscards.R;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.BessonovCardsSQLiteOpenHelper;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCardRepository;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepository;
+import com.sokolov.bessonovscards.domain.cards.EditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.GetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.cards.adapter.CardsPagerAdapter;
+import com.sokolov.bessonovscards.view.cards.adapter.OnCardEditListener;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCategoryChangeListener;
 import com.sokolov.bessonovscards.view.cards.interactor.CardsInteractor;
 import com.sokolov.bessonovscards.view.cards.presenter.CardsPresenter;
@@ -22,9 +24,10 @@ import com.sokolov.bessonovscards.view.cards.view.ICardsView;
 
 import java.util.List;
 
-public class CardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener {
+public class CardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener {
 
     private ICardsPresenter cardsPresenter;
+    private CardsPagerAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +54,9 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
                                         new SqliteCardRepository(
                                                 openHelper),
                                         new SqliteCategoryRepository(
+                                                openHelper)),
+                                new EditCardUseCase(
+                                        new SqliteCardRepository(
                                                 openHelper))));
         cardsPresenter.onCreate();
     }
@@ -67,11 +73,12 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
 
     @Override
     public void setData(List<ICard> cards) {
-        ((ViewPager) findViewById(R.id.container))
-                .setAdapter(
-                        new CardsPagerAdapter(
-                                cards,
-                                getSupportFragmentManager()));
+        adapter =
+                new CardsPagerAdapter(
+                        cards,
+                        getSupportFragmentManager());
+
+        ((ViewPager) findViewById(R.id.container)).setAdapter(adapter);
     }
 
     @Override
@@ -92,5 +99,15 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
     @Override
     public void hideSpinner() {
 
+    }
+
+    @Override
+    public void updateCard(ICard card) {
+        adapter.updateCard(card);
+    }
+
+    @Override
+    public void onCardEdit(ICard editedCard) {
+        cardsPresenter.onEditCard(editedCard);
     }
 }

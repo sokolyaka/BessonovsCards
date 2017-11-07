@@ -8,4 +8,6 @@ public interface ICardsPresenter {
     void onMoveCardToNextCategory(ICard card);
 
     void onMoveCardToPreviewsCategory(ICard card);
+
+    void onEditCard(ICard card);
 }

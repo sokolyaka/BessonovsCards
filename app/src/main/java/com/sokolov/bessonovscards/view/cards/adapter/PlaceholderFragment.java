@@ -5,9 +5,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.sokolov.bessonovscards.R;
+import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.cards.model.ISerializableCard;
 import com.sokolov.bessonovscards.view.cards.model.SerializableCard;
@@ -62,6 +64,29 @@ public class PlaceholderFragment extends Fragment {
                 .setOnClickListener(v ->
                         ((OnCategoryChangeListener) getActivity())
                                 .onPreviews(card));
+
+        rootView
+                .findViewById(R.id.btn_edit_card)
+                .setOnClickListener(v -> {
+                    rootView.findViewById(R.id.rl_static_text).setVisibility(View.INVISIBLE);
+                    rootView.findViewById(R.id.rl_editable_text).setVisibility(View.VISIBLE);
+                    ((EditText) rootView.findViewById(R.id.et_text)).setText(card.text());
+                    ((EditText) rootView.findViewById(R.id.et_translate)).setText(card.translate());
+                });
+
+        rootView
+                .findViewById(R.id.btn_confirm_edit_card)
+                .setOnClickListener(v -> {
+                    rootView.findViewById(R.id.rl_static_text).setVisibility(View.VISIBLE);
+                    rootView.findViewById(R.id.rl_editable_text).setVisibility(View.INVISIBLE);
+                    ((OnCardEditListener) getActivity())
+                            .onCardEdit(
+                                    new Card(
+                                            card.id(),
+                                            ((EditText) rootView.findViewById(R.id.et_text)).getText().toString(),
+                                            ((EditText) rootView.findViewById(R.id.et_translate)).getText().toString(),
+                                            card.categoryName()));
+                });
 
         return rootView;
     }
