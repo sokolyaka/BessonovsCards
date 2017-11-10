@@ -1,6 +1,7 @@
 package com.sokolov.bessonovscards.view.cards;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -14,6 +15,7 @@ import com.sokolov.bessonovscards.domain.cards.GetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.PronounceTextUseCase;
+import com.sokolov.bessonovscards.entity.AndoidTextToSpeech;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.cards.adapter.CardsPagerAdapter;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCardEditListener;
@@ -60,7 +62,12 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
                                 new EditCardUseCase(
                                         new SqliteCardRepository(
                                                 openHelper)),
-                                new PronounceTextUseCase(null)));
+                                new PronounceTextUseCase(
+                                        new AndoidTextToSpeech(
+                                                new TextToSpeech(
+                                                        this,
+                                                        status -> {
+                                                        })))));
         cardsPresenter.onCreate();
     }
 
