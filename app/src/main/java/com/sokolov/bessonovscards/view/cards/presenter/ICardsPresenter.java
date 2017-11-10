@@ -10,4 +10,6 @@ public interface ICardsPresenter {
     void onMoveCardToPreviewsCategory(ICard card);
 
     void onEditCard(ICard card);
+
+    void onPronounce(String text);
 }

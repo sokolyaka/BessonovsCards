@@ -13,6 +13,7 @@ import com.sokolov.bessonovscards.domain.cards.EditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.GetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToPreviewsCategoryUseCase;
+import com.sokolov.bessonovscards.domain.cards.PronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.cards.adapter.CardsPagerAdapter;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCardEditListener;
@@ -57,7 +58,8 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
                                                 openHelper)),
                                 new EditCardUseCase(
                                         new SqliteCardRepository(
-                                                openHelper))));
+                                                openHelper)),
+                                new PronounceTextUseCase(null)));
         cardsPresenter.onCreate();
     }
 
