@@ -18,6 +18,7 @@ import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.cards.adapter.CardsPagerAdapter;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCardEditListener;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCategoryChangeListener;
+import com.sokolov.bessonovscards.view.cards.adapter.OnTextPronounceListener;
 import com.sokolov.bessonovscards.view.cards.interactor.CardsInteractor;
 import com.sokolov.bessonovscards.view.cards.presenter.CardsPresenter;
 import com.sokolov.bessonovscards.view.cards.presenter.ICardsPresenter;
@@ -25,7 +26,7 @@ import com.sokolov.bessonovscards.view.cards.view.ICardsView;
 
 import java.util.List;
 
-public class CardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener {
+public class CardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener, OnTextPronounceListener {
 
     private ICardsPresenter cardsPresenter;
     private CardsPagerAdapter adapter;
@@ -111,5 +112,10 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
     @Override
     public void onCardEdit(ICard editedCard) {
         cardsPresenter.onEditCard(editedCard);
+    }
+
+    @Override
+    public void onTextPronounce(String text) {
+        cardsPresenter.onPronounce(text);
     }
 }
