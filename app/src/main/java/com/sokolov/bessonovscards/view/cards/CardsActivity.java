@@ -18,9 +18,11 @@ import com.sokolov.bessonovscards.domain.cards.PronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.AndoidTextToSpeech;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.cards.adapter.CardsPagerAdapter;
+import com.sokolov.bessonovscards.entity.ITextMode;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCardEditListener;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCategoryChangeListener;
 import com.sokolov.bessonovscards.view.cards.adapter.OnTextPronounceListener;
+import com.sokolov.bessonovscards.entity.TextMode;
 import com.sokolov.bessonovscards.view.cards.interactor.CardsInteractor;
 import com.sokolov.bessonovscards.view.cards.presenter.CardsPresenter;
 import com.sokolov.bessonovscards.view.cards.presenter.ICardsPresenter;
@@ -39,7 +41,6 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
         setContentView(R.layout.activity_cards);
 
         BessonovCardsSQLiteOpenHelper openHelper = new BessonovCardsSQLiteOpenHelper(this);
-        String categoryName = getIntent().getStringExtra("EXTRA_CATEGORY_NAME");
 
         cardsPresenter =
                 new CardsPresenter(
@@ -48,7 +49,9 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
                                 new GetShuffleCardsByCategory(
                                         new SqliteCardRepository(
                                                 openHelper),
-                                        categoryName),
+                                        getIntent()
+                                                .getStringExtra(
+                                                        "EXTRA_CATEGORY_NAME")),
                                 new MoveCardToNextCategoryUseCase(
                                         new SqliteCardRepository(
                                                 openHelper),
@@ -67,7 +70,11 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
                                                 new TextToSpeech(
                                                         this,
                                                         status -> {
-                                                        })))));
+                                                        })))),
+                        new TextMode(
+                                getIntent()
+                                        .getStringExtra(
+                                                "EXTRA_TEXT_MODE")));
         cardsPresenter.onCreate();
     }
 
@@ -82,11 +89,12 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
     }
 
     @Override
-    public void setData(List<ICard> cards) {
+    public void refreshData(List<ICard> cards, ITextMode textMode) {
         adapter =
                 new CardsPagerAdapter(
                         cards,
-                        getSupportFragmentManager());
+                        getSupportFragmentManager(),
+                        textMode);
 
         ((ViewPager) findViewById(R.id.container)).setAdapter(adapter);
     }

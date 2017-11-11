@@ -6,6 +6,7 @@ import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
+import com.sokolov.bessonovscards.entity.ITextMode;
 import com.sokolov.bessonovscards.view.cards.interactor.ICardsInteractor;
 import com.sokolov.bessonovscards.view.cards.view.ICardsView;
 
@@ -14,10 +15,12 @@ import java.util.List;
 public class CardsPresenter implements ICardsPresenter {
     private final ICardsView cardsView;
     private final ICardsInteractor cardsInteractor;
+    private final ITextMode textMode;
 
-    public CardsPresenter(ICardsView cardsView, ICardsInteractor cardsInteractor) {
+    public CardsPresenter(ICardsView cardsView, ICardsInteractor cardsInteractor, ITextMode textMode) {
         this.cardsView = cardsView;
         this.cardsInteractor = cardsInteractor;
+        this.textMode = textMode;
     }
 
     @Override
@@ -27,7 +30,7 @@ public class CardsPresenter implements ICardsPresenter {
                         new IGetShuffleCardsByCategory.Callback() {
                             @Override
                             public void onSuccess(List<ICard> cards) {
-                                cardsView.setData(cards);
+                                cardsView.refreshData(cards, textMode);
                             }
 
                             @Override
