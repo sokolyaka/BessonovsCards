@@ -22,6 +22,7 @@ import com.sokolov.bessonovscards.view.home.model.ICategoryDisplayModel;
 import com.sokolov.bessonovscards.view.home.presenter.HomePresenter;
 import com.sokolov.bessonovscards.view.home.view.IHomeView;
 import com.sokolov.bessonovscards.view.home.widget.NewCardDialog;
+import com.sokolov.bessonovscards.view.home.widget.SelectTextModeDialog;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,11 +60,17 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
         categoryAdapter =
                 new CategoryAdapter(
                         new ArrayList<>(),
-                        categoryName -> {
-                            Intent intent = new Intent(getBaseContext(), CardsActivity.class);
-                            intent.putExtra("EXTRA_CATEGORY_NAME", categoryName);
-                            startActivity(intent);
-                        });
+                        categoryName ->
+                                new SelectTextModeDialog()
+                                        .show(
+                                                getSupportFragmentManager(),
+                                                "tag",
+                                                textMode -> {
+                                                    Intent intent = new Intent(getBaseContext(), CardsActivity.class);
+                                                    intent.putExtra("EXTRA_CATEGORY_NAME", categoryName);
+                                                    intent.putExtra("EXTRA_TEXT_MODE", textMode);
+                                                    startActivity(intent);
+                                                }));
 
         recyclerView.setAdapter(categoryAdapter);
         findViewById(R.id.fab)

@@ -6,6 +6,7 @@ import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.Card;
+import com.sokolov.bessonovscards.entity.ITextMode;
 import com.sokolov.bessonovscards.view.cards.interactor.ICardsInteractor;
 import com.sokolov.bessonovscards.view.cards.view.ICardsView;
 
@@ -32,11 +33,13 @@ public class CardsPresenterTest {
     private ICardsInteractor cardsInteractor;
     @Mock
     private ICardsView cardsView;
+    @Mock
+    private ITextMode textMode;
 
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        cardsPresenter = new CardsPresenter(cardsView, cardsInteractor);
+        cardsPresenter = new CardsPresenter(cardsView, cardsInteractor, textMode);
     }
 
     @Test
@@ -49,7 +52,7 @@ public class CardsPresenterTest {
         verify(cardsInteractor)
                 .getShuffleCardsByCategory(
                         any(IGetShuffleCardsByCategory.Callback.class));
-        verify(cardsView).setData(anyList());
+        verify(cardsView).refreshData(anyList(), eq(textMode));
     }
 
     @Test

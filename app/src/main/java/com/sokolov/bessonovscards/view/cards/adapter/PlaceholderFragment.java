@@ -17,14 +17,16 @@ import com.sokolov.bessonovscards.view.cards.model.SerializableCard;
 public class PlaceholderFragment extends Fragment {
 
     private static final String CARD = "CARD";
+    private static final String TEXT_MODE = "TEXT_MODE";
 
     public PlaceholderFragment() {
     }
 
-    public static PlaceholderFragment newInstance(ICard card) {
+    public static PlaceholderFragment newInstance(ICard card, String textMode) {
         PlaceholderFragment fragment = new PlaceholderFragment();
         Bundle args = new Bundle();
         args.putSerializable(CARD, new SerializableCard(card));
+        args.putString(TEXT_MODE, textMode);
         fragment.setArguments(args);
         return fragment;
     }
@@ -39,6 +41,19 @@ public class PlaceholderFragment extends Fragment {
                 (TextView) rootView.findViewById(R.id.tv_text);
         TextView tvTranslate =
                 (TextView) rootView.findViewById(R.id.tv_translate);
+
+        switch (getArguments().getString(TEXT_MODE)){
+            case "textMode": {
+                tvText.setVisibility(View.VISIBLE);
+                tvTranslate.setVisibility(View.INVISIBLE);
+                break;
+            }
+            case "translateMode": {
+                tvText.setVisibility(View.INVISIBLE);
+                tvTranslate.setVisibility(View.VISIBLE);
+                break;
+            }
+        }
 
         tvText.setText(card.text());
         tvText
