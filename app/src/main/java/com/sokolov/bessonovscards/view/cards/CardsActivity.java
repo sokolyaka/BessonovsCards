@@ -1,6 +1,7 @@
 package com.sokolov.bessonovscards.view.cards;
 
 import android.os.Bundle;
+import android.speech.tts.TextToSpeech;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
@@ -13,10 +14,13 @@ import com.sokolov.bessonovscards.domain.cards.EditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.GetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToPreviewsCategoryUseCase;
+import com.sokolov.bessonovscards.domain.cards.PronounceTextUseCase;
+import com.sokolov.bessonovscards.entity.AndoidTextToSpeech;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.cards.adapter.CardsPagerAdapter;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCardEditListener;
 import com.sokolov.bessonovscards.view.cards.adapter.OnCategoryChangeListener;
+import com.sokolov.bessonovscards.view.cards.adapter.OnTextPronounceListener;
 import com.sokolov.bessonovscards.view.cards.interactor.CardsInteractor;
 import com.sokolov.bessonovscards.view.cards.presenter.CardsPresenter;
 import com.sokolov.bessonovscards.view.cards.presenter.ICardsPresenter;
@@ -24,7 +28,7 @@ import com.sokolov.bessonovscards.view.cards.view.ICardsView;
 
 import java.util.List;
 
-public class CardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener {
+public class CardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener, OnTextPronounceListener {
 
     private ICardsPresenter cardsPresenter;
     private CardsPagerAdapter adapter;
@@ -57,7 +61,13 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
                                                 openHelper)),
                                 new EditCardUseCase(
                                         new SqliteCardRepository(
-                                                openHelper))));
+                                                openHelper)),
+                                new PronounceTextUseCase(
+                                        new AndoidTextToSpeech(
+                                                new TextToSpeech(
+                                                        this,
+                                                        status -> {
+                                                        })))));
         cardsPresenter.onCreate();
     }
 
@@ -109,5 +119,10 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
     @Override
     public void onCardEdit(ICard editedCard) {
         cardsPresenter.onEditCard(editedCard);
+    }
+
+    @Override
+    public void onTextPronounce(String text) {
+        cardsPresenter.onPronounce(text);
     }
 }

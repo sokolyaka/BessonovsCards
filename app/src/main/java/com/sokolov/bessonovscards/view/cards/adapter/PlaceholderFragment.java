@@ -88,6 +88,26 @@ public class PlaceholderFragment extends Fragment {
                                             card.categoryName()));
                 });
 
+        rootView
+                .findViewById(R.id.btn_pronounce_card)
+                .setOnClickListener(v -> {
+                    String selectedText =
+                            card
+                                    .text()
+                                    .substring(
+                                            tvText.getSelectionStart(),
+                                            tvText.getSelectionEnd());
+
+                    String textToPronounce;
+                    if (selectedText.length() == 0) {
+                        textToPronounce = card.text();
+                    } else {
+                        textToPronounce = selectedText;
+                    }
+
+                    ((OnTextPronounceListener) getActivity()).onTextPronounce(textToPronounce);
+                });
+
         return rootView;
     }
 }

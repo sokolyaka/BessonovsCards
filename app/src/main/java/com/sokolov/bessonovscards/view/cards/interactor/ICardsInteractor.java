@@ -4,6 +4,7 @@ import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
+import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 
 public interface ICardsInteractor {
@@ -15,4 +16,6 @@ public interface ICardsInteractor {
     void onMoveCardToPreviewsCategory(ICard card, IMoveCardToPreviewsCategoryUseCase.Callback callback);
 
     void onEditCard(ICard card, IEditCardUseCase.Callback callback);
+
+    void onPronounce(String text, IPronounceTextUseCase.Callback callback);
 }

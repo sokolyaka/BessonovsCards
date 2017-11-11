@@ -4,6 +4,7 @@ import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
+import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.cards.interactor.ICardsInteractor;
 import com.sokolov.bessonovscards.view.cards.view.ICardsView;
@@ -100,5 +101,26 @@ public class CardsPresenter implements ICardsPresenter {
                                 cardsView.hideSpinner();
                             }
                         });
+    }
+
+    @Override
+    public void onPronounce(String text) {
+        cardsView.showSpinner();
+
+        cardsInteractor
+                .onPronounce(
+                        text,
+                        new IPronounceTextUseCase.Callback() {
+                            @Override
+                            public void onSuccess() {
+                                cardsView.hideSpinner();
+                            }
+
+                            @Override
+                            public void onError() {
+
+                            }
+                        }
+                );
     }
 }

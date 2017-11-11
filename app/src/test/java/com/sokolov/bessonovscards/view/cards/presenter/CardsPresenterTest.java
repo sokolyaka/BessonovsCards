@@ -4,6 +4,7 @@ import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
+import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.view.cards.interactor.ICardsInteractor;
 import com.sokolov.bessonovscards.view.cards.view.ICardsView;
@@ -141,5 +142,20 @@ public class CardsPresenterTest {
         verify(cardsView).showSpinner();
         verify(cardsInteractor).onEditCard(eq(card), any());
         verify(cardsView).updateCard(eq(card));
+    }
+
+    @Test
+    public void testOnPronounce() {
+        String text = "text";
+        doAnswer(invocation -> {
+            invocation.getArgumentAt(1, IPronounceTextUseCase.Callback.class).onSuccess();
+            return null;
+        }).when(cardsInteractor).onPronounce(eq(text), any());
+
+        cardsPresenter.onPronounce(text);
+
+        verify(cardsView).showSpinner();
+        verify(cardsInteractor).onPronounce(eq(text), any());
+        verify(cardsView).hideSpinner();
     }
 }
