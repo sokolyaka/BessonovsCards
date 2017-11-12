@@ -10,6 +10,8 @@ import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.ICard;
 
+import org.joda.time.LocalDate;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -60,7 +62,8 @@ public class SqliteCardRepository implements ICardRepository {
                                     cursor.getString(cursor.getColumnIndex(COLUMN_ID)),
                                     cursor.getString(cursor.getColumnIndex(COLUMN_TEXT)),
                                     cursor.getString(cursor.getColumnIndex(COLUMN_TRANSLATE)),
-                                    cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY_NAME))));
+                                    cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY_NAME)),
+                                    LocalDate.now()));
                     cursor.moveToNext();
                 }
             }

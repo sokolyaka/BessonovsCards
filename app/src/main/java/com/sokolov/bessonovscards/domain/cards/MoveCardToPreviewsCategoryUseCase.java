@@ -36,7 +36,8 @@ public class MoveCardToPreviewsCategoryUseCase implements IMoveCardToPreviewsCat
                             card.text(),
                             card.translate(),
                             prevCategory
-                                    .name()));
+                                    .name(),
+                            card.date()));
             callback.onSuccess();
         } catch (NotFoundException e) {
             callback.onError(e);

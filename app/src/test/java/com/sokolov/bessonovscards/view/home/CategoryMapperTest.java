@@ -7,6 +7,7 @@ import com.sokolov.bessonovscards.entity.Schedule;
 import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
 import com.sokolov.bessonovscards.view.home.model.CategoryDisplayModelFromEntity;
 
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -30,8 +31,8 @@ public class CategoryMapperTest {
         when(cardRepository.getAllByCategoryName("NAME"))
                 .thenReturn(
                         asList(
-                                new Card("uuid1", "text2", "translate3", "NAME"),
-                                new Card("uuid2", "text2", "translate3", "NAME")));
+                                new Card("uuid1", "text2", "translate3", "NAME", LocalDate.now()),
+                                new Card("uuid2", "text2", "translate3", "NAME", LocalDate.now())));
 
         assertEquals(
                 new CategoryDisplayModelFromEntity(

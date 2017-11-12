@@ -5,6 +5,7 @@ import com.sokolov.bessonovscards.data.repository.MockCategoryRepository;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.Schedule;
 
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Answers;
@@ -38,7 +39,8 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                Schedule.TODAY.name()),
+                                Schedule.TODAY.name(),
+                                LocalDate.now()),
                         callback);
         verify(cardRepository)
                 .save(
@@ -46,7 +48,8 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                Schedule.TOMORROW.name()));
+                                Schedule.TOMORROW.name(),
+                                LocalDate.now()));
         verify(callback).onSuccess();
     }
 
@@ -60,7 +63,8 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                "LEARNED"),
+                                "LEARNED",
+                                LocalDate.now()),
                         callback);
         verify(callback).onError(any(Exception.class));
     }

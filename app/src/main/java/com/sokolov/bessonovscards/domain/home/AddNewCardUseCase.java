@@ -4,6 +4,8 @@ import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.utils.Text;
 
+import org.joda.time.LocalDate;
+
 import java.util.UUID;
 
 public class AddNewCardUseCase implements IAddNewCardUseCase {
@@ -25,7 +27,8 @@ public class AddNewCardUseCase implements IAddNewCardUseCase {
                             UUID.randomUUID().toString(),
                             text,
                             translate,
-                            "not set"));
+                            "not set",
+                            LocalDate.now()));
 
             callback.onSuccess();
         }

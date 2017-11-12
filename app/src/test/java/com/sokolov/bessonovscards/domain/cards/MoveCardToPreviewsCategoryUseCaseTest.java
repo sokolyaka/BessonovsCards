@@ -4,6 +4,7 @@ import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.data.repository.MockCategoryRepository;
 import com.sokolov.bessonovscards.entity.Card;
 
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -32,7 +33,8 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                "TOMORROW"),
+                                "TOMORROW",
+                                LocalDate.now()),
                         callback);
         verify(cardRepository)
                 .save(
@@ -40,7 +42,8 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                "TODAY"));
+                                "TODAY",
+                                LocalDate.now()));
         verify(callback).onSuccess();
 
     }
@@ -55,7 +58,8 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                "ONCE_PER_WEEK"),
+                                "ONCE_PER_WEEK",
+                                LocalDate.now()),
                         callback);
         verify(cardRepository)
                 .save(
@@ -63,7 +67,8 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                "TOMORROW"));
+                                "TOMORROW",
+                                LocalDate.now()));
         verify(callback).onSuccess();
     }
 
@@ -77,7 +82,8 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                "UNSET"),
+                                "UNSET",
+                                LocalDate.now()),
                         callback);
         verify(callback).onError(any(Exception.class));
     }

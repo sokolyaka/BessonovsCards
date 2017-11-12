@@ -1,16 +1,20 @@
 package com.sokolov.bessonovscards.entity;
 
+import org.joda.time.LocalDate;
+
 public class Card implements ICard {
     private final String uuid;
     private final String text;
     private final String translate;
     private final String categoryName;
+    private final LocalDate date;
 
-    public Card(String uuid, String text, String translate, String categoryName) {
+    public Card(String uuid, String text, String translate, String categoryName, LocalDate date) {
         this.uuid = uuid;
         this.text = text;
         this.translate = translate;
         this.categoryName = categoryName;
+        this.date = date;
     }
 
     @Override
@@ -31,6 +35,11 @@ public class Card implements ICard {
     @Override
     public String categoryName() {
         return categoryName;
+    }
+
+    @Override
+    public LocalDate date() {
+        return date;
     }
 
     @Override

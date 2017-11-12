@@ -33,7 +33,8 @@ public class MoveCardToNextCategoryUseCase implements IMoveCardToNextCategoryUse
                             card.id(),
                             card.text(),
                             card.translate(),
-                            nextCategory.name()));
+                            nextCategory.name(),
+                            card.date()));
             callback.onSuccess();
         } catch (NotFoundException e) {
             callback.onError(e);
