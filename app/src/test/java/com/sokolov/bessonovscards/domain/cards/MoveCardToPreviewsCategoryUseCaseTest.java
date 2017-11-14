@@ -2,11 +2,13 @@ package com.sokolov.bessonovscards.domain.cards;
 
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.data.repository.MockCategoryRepository;
+import com.sokolov.bessonovscards.data.repository.MockScheduleRepository;
 import com.sokolov.bessonovscards.entity.Card;
 
 import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.Answers;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
@@ -19,6 +21,8 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
     private IMoveCardToPreviewsCategoryUseCase.Callback callback;
     @Mock
     private ICardRepository cardRepository;
+    @Mock(answer = Answers.CALLS_REAL_METHODS)
+    private MockScheduleRepository scheduleRepository;
 
     @Before
     public void setUp() {
@@ -27,7 +31,7 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
 
     @Test
     public void testSuccess1() {
-        new MoveCardToPreviewsCategoryUseCase(cardRepository, new MockCategoryRepository())
+        new MoveCardToPreviewsCategoryUseCase(cardRepository, new MockCategoryRepository(), scheduleRepository)
                 .execute(
                         new Card(
                                 "uuid",
@@ -52,7 +56,8 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
     public void testSuccess2() {
         new MoveCardToPreviewsCategoryUseCase(
                 cardRepository,
-                new MockCategoryRepository())
+                new MockCategoryRepository(),
+                scheduleRepository)
                 .execute(
                         new Card(
                                 "uuid",
@@ -68,7 +73,7 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
                                 "text",
                                 "translate",
                                 "TOMORROW",
-                                LocalDate.now()));
+                                LocalDate.now().plusDays(1)));
         verify(callback).onSuccess();
     }
 
@@ -76,7 +81,7 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
     public void testOnError1() {
         new MoveCardToPreviewsCategoryUseCase(
                 cardRepository,
-                new MockCategoryRepository())
+                new MockCategoryRepository(), scheduleRepository)
                 .execute(
                         new Card(
                                 "uuid",

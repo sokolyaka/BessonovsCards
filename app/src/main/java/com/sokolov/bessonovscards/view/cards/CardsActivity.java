@@ -64,6 +64,8 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
                                         new SqliteCardRepository(
                                                 openHelper),
                                         new SqliteCategoryRepository(
+                                                openHelper),
+                                        new SqliteScheduleRepository(
                                                 openHelper)),
                                 new EditCardUseCase(
                                         new SqliteCardRepository(
