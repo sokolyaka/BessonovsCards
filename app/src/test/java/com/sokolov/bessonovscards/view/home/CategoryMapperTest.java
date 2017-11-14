@@ -3,7 +3,6 @@ package com.sokolov.bessonovscards.view.home;
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.Category;
-import com.sokolov.bessonovscards.entity.Schedule;
 import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
 import com.sokolov.bessonovscards.view.home.model.CategoryDisplayModelFromEntity;
 
@@ -36,11 +35,11 @@ public class CategoryMapperTest {
 
         assertEquals(
                 new CategoryDisplayModelFromEntity(
-                        new Category("NAME", 0, Schedule.TODAY),
+                        new Category("NAME", 0, "ScheduleTODAY"),
                         2),
                 new CategoryMapper(cardRepository)
                         .toDisplayModel(
-                                new Category("NAME", 0, Schedule.TODAY)));
+                                new Category("NAME", 0, "ScheduleTODAY")));
     }
 
 }

@@ -3,7 +3,6 @@ package com.sokolov.bessonovscards.domain.cards;
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.data.repository.MockCategoryRepository;
 import com.sokolov.bessonovscards.entity.Card;
-import com.sokolov.bessonovscards.entity.Schedule;
 
 import org.joda.time.LocalDate;
 import org.junit.Before;
@@ -39,7 +38,7 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                Schedule.TODAY.name(),
+                                "TODAY",
                                 LocalDate.now()),
                         callback);
         verify(cardRepository)
@@ -48,7 +47,7 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "uuid",
                                 "text",
                                 "translate",
-                                Schedule.TOMORROW.name(),
+                                "TOMORROW",
                                 LocalDate.now()));
         verify(callback).onSuccess();
     }

@@ -18,7 +18,7 @@ class ViewHolder extends RecyclerView.ViewHolder {
 
     public void bind(ICategoryDisplayModel displayModel, OnItemClickListener onItemClickListener) {
         ((TextView) v.findViewById(R.id.title)).setText(displayModel.name());
-        ((TextView) v.findViewById(R.id.schedule)).setText(displayModel.schedule().name());
+        ((TextView) v.findViewById(R.id.schedule)).setText(displayModel.scheduleUuid());
         ((TextView) v.findViewById(R.id.cards_count)).setText(String.valueOf(displayModel.cardsCount()));
         v.setOnClickListener(v1 -> onItemClickListener.onItemClick(displayModel.name()));
     }

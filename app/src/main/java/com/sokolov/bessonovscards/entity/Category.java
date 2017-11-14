@@ -5,12 +5,12 @@ public class Category implements ICategory {
 
     private final String name;
     private final int ordinal;
-    private final Schedule schedule;
+    private final String scheduleUuid;
 
-    public Category(String name, int ordinal, Schedule schedule) {
+    public Category(String name, int ordinal, String scheduleUuid) {
         this.name = name;
         this.ordinal = ordinal;
-        this.schedule = schedule;
+        this.scheduleUuid = scheduleUuid;
     }
 
     @Override
@@ -19,8 +19,8 @@ public class Category implements ICategory {
     }
 
     @Override
-    public Schedule schedule() {
-        return schedule;
+    public String scheduleUuid() {
+        return scheduleUuid;
     }
 
     @Override
@@ -37,7 +37,7 @@ public class Category implements ICategory {
 
         if (ordinal != category.ordinal) return false;
         if (name != null ? !name.equals(category.name) : category.name != null) return false;
-        return schedule == category.schedule;
+        return scheduleUuid == category.scheduleUuid;
 
     }
 
@@ -45,7 +45,7 @@ public class Category implements ICategory {
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + ordinal;
-        result = 31 * result + (schedule != null ? schedule.hashCode() : 0);
+        result = 31 * result + (scheduleUuid != null ? scheduleUuid.hashCode() : 0);
         return result;
     }
 
@@ -54,7 +54,7 @@ public class Category implements ICategory {
         return "Category{" +
                 "name='" + name + '\'' +
                 ", ordinal=" + ordinal +
-                ", schedule=" + schedule +
+                ", scheduleUuid=" + scheduleUuid +
                 '}';
     }
 }

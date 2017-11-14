@@ -8,7 +8,6 @@ import com.sokolov.bessonovscards.data.exceptions.NotFoundException;
 import com.sokolov.bessonovscards.data.reposiroty.ICategoryRepository;
 import com.sokolov.bessonovscards.entity.Category;
 import com.sokolov.bessonovscards.entity.ICategory;
-import com.sokolov.bessonovscards.entity.Schedule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +42,7 @@ public class SqliteCategoryRepository implements ICategoryRepository {
                         new Category(
                                 cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
                                 cursor.getInt(cursor.getColumnIndex(COLUMN_ORDINAL)),
-                                Schedule.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_SCHEDULE))));
+                                cursor.getString(cursor.getColumnIndex(COLUMN_SCHEDULE)));
             } else {
                 throw new NotFoundException();
             }
@@ -74,7 +73,7 @@ public class SqliteCategoryRepository implements ICategoryRepository {
                         new Category(
                                 cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
                                 cursor.getInt(cursor.getColumnIndex(COLUMN_ORDINAL)),
-                                Schedule.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_SCHEDULE))));
+                                cursor.getString(cursor.getColumnIndex(COLUMN_SCHEDULE)));
             } else {
                 throw new NotFoundException();
             }
@@ -108,7 +107,7 @@ public class SqliteCategoryRepository implements ICategoryRepository {
                             new Category(
                                     cursor.getString(cursor.getColumnIndex(COLUMN_NAME)),
                                     cursor.getInt(cursor.getColumnIndex(COLUMN_ORDINAL)),
-                                    Schedule.valueOf(cursor.getString(cursor.getColumnIndex(COLUMN_SCHEDULE)))));
+                                    cursor.getString(cursor.getColumnIndex(COLUMN_SCHEDULE))));
                     cursor.moveToNext();
                 }
             }
