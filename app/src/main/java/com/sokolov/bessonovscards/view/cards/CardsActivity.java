@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.Toast;
 
 import com.sokolov.bessonovscards.R;
+import com.sokolov.bessonovscards.data.reposiroty.inmemory.InMemoryScheduleRepository;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.BessonovCardsSQLiteOpenHelper;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCardRepository;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepository;
-import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteScheduleRepository;
 import com.sokolov.bessonovscards.domain.cards.EditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.GetShuffleCardsByCategory;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToNextCategoryUseCase;
@@ -58,15 +58,13 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
                                                 openHelper),
                                         new SqliteCategoryRepository(
                                                 openHelper),
-                                        new SqliteScheduleRepository(
-                                                openHelper)),
+                                        new InMemoryScheduleRepository()),
                                 new MoveCardToPreviewsCategoryUseCase(
                                         new SqliteCardRepository(
                                                 openHelper),
                                         new SqliteCategoryRepository(
                                                 openHelper),
-                                        new SqliteScheduleRepository(
-                                                openHelper)),
+                                        new InMemoryScheduleRepository()),
                                 new EditCardUseCase(
                                         new SqliteCardRepository(
                                                 openHelper)),
