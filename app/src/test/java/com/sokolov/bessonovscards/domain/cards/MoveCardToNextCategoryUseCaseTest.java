@@ -1,6 +1,7 @@
 package com.sokolov.bessonovscards.domain.cards;
 
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
+import com.sokolov.bessonovscards.data.repository.MockScheduleRepository;
 import com.sokolov.bessonovscards.data.repository.MockCategoryRepository;
 import com.sokolov.bessonovscards.entity.Card;
 
@@ -22,6 +23,8 @@ public class MoveCardToNextCategoryUseCaseTest {
     private ICardRepository cardRepository;
     @Mock(answer = Answers.CALLS_REAL_METHODS)
     private MockCategoryRepository categoryRepository;
+    @Mock(answer = Answers.CALLS_REAL_METHODS)
+    private MockScheduleRepository scheduleRepository;
 
     @Before
     public void setUp() {
@@ -29,10 +32,11 @@ public class MoveCardToNextCategoryUseCaseTest {
     }
 
     @Test
-    public void toToday() throws Exception {
+    public void toTomorrow() throws Exception {
         new MoveCardToNextCategoryUseCase(
                 cardRepository,
-                categoryRepository)
+                categoryRepository,
+                scheduleRepository)
                 .execute(
                         new Card(
                                 "uuid",
@@ -48,7 +52,32 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "text",
                                 "translate",
                                 "TOMORROW",
-                                LocalDate.now()));
+                                LocalDate.now().plusDays(1)));
+        verify(callback).onSuccess();
+    }
+
+    @Test
+    public void toOncePerWeek() throws Exception {
+        new MoveCardToNextCategoryUseCase(
+                cardRepository,
+                categoryRepository,
+                scheduleRepository)
+                .execute(
+                        new Card(
+                                "uuid",
+                                "text",
+                                "translate",
+                                "TOMORROW",
+                                LocalDate.now()),
+                        callback);
+        verify(cardRepository)
+                .save(
+                        new Card(
+                                "uuid",
+                                "text",
+                                "translate",
+                                "ONCE_PER_WEEK",
+                                LocalDate.now().plusDays(7)));
         verify(callback).onSuccess();
     }
 
@@ -56,7 +85,8 @@ public class MoveCardToNextCategoryUseCaseTest {
     public void overLastCategory() throws Exception {
         new MoveCardToNextCategoryUseCase(
                 cardRepository,
-                categoryRepository)
+                categoryRepository,
+                scheduleRepository)
                 .execute(
                         new Card(
                                 "uuid",
