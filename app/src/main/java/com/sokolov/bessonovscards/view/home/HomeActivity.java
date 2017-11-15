@@ -47,7 +47,8 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
                         new HomeInteractor(
                                 new AddNewCardUseCase(
                                         new SqliteCardRepository(
-                                                openHelper)),
+                                                openHelper),
+                                        "not set"),
                                 new GetAllCategoriesUseCase(
                                         new SqliteCategoryRepository(
                                                 openHelper))),
