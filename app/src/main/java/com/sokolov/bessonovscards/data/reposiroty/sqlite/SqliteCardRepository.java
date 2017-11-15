@@ -102,6 +102,45 @@ public class SqliteCardRepository implements ICardRepository {
 
     @Override
     public List<ICard> getAll() {
-        return null;
+        Cursor cursor = null;
+        SQLiteDatabase db = null;
+        try {
+            db = sqLiteOpenHelper
+                    .getReadableDatabase();
+            cursor = db
+                    .rawQuery(
+                            "SELECT "
+                                    + COLUMN_ID + ", "
+                                    + COLUMN_TEXT + ", "
+                                    + COLUMN_TRANSLATE + ", "
+                                    + COLUMN_CATEGORY_NAME + ", "
+                                    + COLUMN_DATE +
+                                    " FROM " + CardContract.Entity.TABLE_NAME +
+                                    " INNER JOIN " + CardDateContract.Entity.TABLE_NAME +
+                                    " ON " + CardDateContract.Entity.TABLE_NAME + "." + CardDateContract.Entity.COLUMN_CARD_UUID + " = " + CardContract.Entity.TABLE_NAME + "." + COLUMN_ID,
+                            null);
+
+            List<ICard> answer = new ArrayList<>();
+            if (cursor.moveToFirst()) {
+                while (!cursor.isAfterLast()) {
+                    answer.add(
+                            new Card(
+                                    cursor.getString(cursor.getColumnIndex(COLUMN_ID)),
+                                    cursor.getString(cursor.getColumnIndex(COLUMN_TEXT)),
+                                    cursor.getString(cursor.getColumnIndex(COLUMN_TRANSLATE)),
+                                    cursor.getString(cursor.getColumnIndex(COLUMN_CATEGORY_NAME)),
+                                    LocalDate.parse(cursor.getString(cursor.getColumnIndex(COLUMN_DATE)))));
+                    cursor.moveToNext();
+                }
+            }
+            return answer;
+        } finally {
+            if (cursor != null) {
+                cursor.close();
+            }
+            if (db != null) {
+                db.close();
+            }
+        }
     }
 }
