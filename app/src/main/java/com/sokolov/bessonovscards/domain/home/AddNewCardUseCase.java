@@ -10,9 +10,11 @@ import java.util.UUID;
 
 public class AddNewCardUseCase implements IAddNewCardUseCase {
     private final ICardRepository cardRepository;
+    private final String categoryName;
 
-    public AddNewCardUseCase(ICardRepository cardRepository) {
+    public AddNewCardUseCase(ICardRepository cardRepository, String categoryName) {
         this.cardRepository = cardRepository;
+        this.categoryName = categoryName;
     }
 
     @Override
@@ -27,7 +29,7 @@ public class AddNewCardUseCase implements IAddNewCardUseCase {
                             UUID.randomUUID().toString(),
                             text,
                             translate,
-                            "not set",
+                            categoryName,
                             LocalDate.now()));
 
             callback.onSuccess();

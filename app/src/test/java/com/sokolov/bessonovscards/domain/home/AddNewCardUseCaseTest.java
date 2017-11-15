@@ -25,7 +25,7 @@ public class AddNewCardUseCaseTest {
 
     @Test
     public void testExecute() {
-        new AddNewCardUseCase(cardRepository)
+        new AddNewCardUseCase(cardRepository, "not set")
                 .execute("text", "translate", callback);
 
         ArgumentCaptor<Card> captor = ArgumentCaptor.forClass(Card.class);
@@ -38,7 +38,7 @@ public class AddNewCardUseCaseTest {
 
     @Test
     public void noText() throws Exception {
-        new AddNewCardUseCase(cardRepository)
+        new AddNewCardUseCase(cardRepository, "not set")
                 .execute("", "translate" , callback);
 
         verify(callback).onError("No text");
@@ -46,7 +46,7 @@ public class AddNewCardUseCaseTest {
 
     @Test
     public void noTranslate() throws Exception {
-        new AddNewCardUseCase(cardRepository)
+        new AddNewCardUseCase(cardRepository, "not set")
                 .execute("text", "", callback);
 
         verify(callback).onError("No translate");
