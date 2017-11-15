@@ -1,8 +1,8 @@
 package com.sokolov.bessonovscards.domain.cards;
 
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
-import com.sokolov.bessonovscards.data.repository.MockScheduleRepository;
 import com.sokolov.bessonovscards.data.repository.MockCategoryRepository;
+import com.sokolov.bessonovscards.data.repository.MockScheduleRepository;
 import com.sokolov.bessonovscards.entity.Card;
 
 import org.joda.time.LocalDate;
@@ -43,7 +43,7 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "text",
                                 "translate",
                                 "TODAY",
-                                LocalDate.now()),
+                                new LocalDate(1987, 6, 29)),
                         callback);
         verify(cardRepository)
                 .save(
@@ -68,7 +68,7 @@ public class MoveCardToNextCategoryUseCaseTest {
                                 "text",
                                 "translate",
                                 "TOMORROW",
-                                LocalDate.now()),
+                                new LocalDate(1987, 6, 29)),
                         callback);
         verify(cardRepository)
                 .save(
