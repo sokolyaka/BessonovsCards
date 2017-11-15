@@ -2,7 +2,6 @@ package com.sokolov.bessonovscards.domain.home;
 
 import com.sokolov.bessonovscards.data.reposiroty.ICategoryRepository;
 import com.sokolov.bessonovscards.entity.Category;
-import com.sokolov.bessonovscards.entity.Schedule;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -31,8 +30,8 @@ public class GetAllCategoriesUseCaseTest {
         getAllCategories = new GetAllCategoriesUseCase(categoryRepository);
         expectedCategories =
                 Arrays.asList(
-                        new Category("TODAY", 0, Schedule.TODAY),
-                        new Category("TOMORROW", 1, Schedule.TOMORROW));
+                        new Category("TODAY", 0, "ScheduleTODAY"),
+                        new Category("TOMORROW", 1, "ScheduleTOMORROW"));
     }
 
     @Test

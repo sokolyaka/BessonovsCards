@@ -1,7 +1,6 @@
 package com.sokolov.bessonovscards.view.home.model;
 
 import com.sokolov.bessonovscards.entity.ICategory;
-import com.sokolov.bessonovscards.entity.Schedule;
 
 public class CategoryDisplayModelFromEntity implements ICategoryDisplayModel {
     private final ICategory entity;
@@ -18,8 +17,8 @@ public class CategoryDisplayModelFromEntity implements ICategoryDisplayModel {
     }
 
     @Override
-    public Schedule schedule() {
-        return entity.schedule();
+    public String scheduleUuid() {
+        return entity.scheduleUuid();
     }
 
     @Override

@@ -100,7 +100,8 @@ public class PlaceholderFragment extends Fragment {
                                             card.id(),
                                             ((EditText) rootView.findViewById(R.id.et_text)).getText().toString(),
                                             ((EditText) rootView.findViewById(R.id.et_translate)).getText().toString(),
-                                            card.categoryName()));
+                                            card.categoryName(),
+                                            card.date()));
                 });
 
         rootView

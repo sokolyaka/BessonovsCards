@@ -5,6 +5,7 @@ import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.ICard;
 
+import org.joda.time.LocalDate;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -35,7 +36,7 @@ public class GetShuffleCardsForCategoryTest {
     public void testOnSuccess() {
         List<ICard> dbAnswer = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
-            dbAnswer.add(new Card("uuid" + i, "text" + i, "translate" + i, "categoryName"));
+            dbAnswer.add(new Card("uuid" + i, "text" + i, "translate" + i, "categoryName", LocalDate.now()));
         }
 
         when(cardRepository.getAllByCategoryName("categoryName"))
@@ -50,7 +51,7 @@ public class GetShuffleCardsForCategoryTest {
         List<ICard> useCAseAnswer = captor.getValue();
         List<ICard> originalDbAnswer = new ArrayList<>();
         for (int i = 0; i < 50; i++) {
-            originalDbAnswer.add(new Card("uuid" + i, "text" + i, "translate" + i, "categoryName"));
+            originalDbAnswer.add(new Card("uuid" + i, "text" + i, "translate" + i, "categoryName", LocalDate.now()));
         }
 
         int coincidence = 0;

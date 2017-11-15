@@ -1,7 +1,6 @@
 package com.sokolov.bessonovscards.view.home;
 
 import com.sokolov.bessonovscards.entity.Category;
-import com.sokolov.bessonovscards.entity.Schedule;
 import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
 import com.sokolov.bessonovscards.view.home.mapper.SortedByOrderCategoryMapper;
 import com.sokolov.bessonovscards.view.home.model.CategoryDisplayModelFromEntity;
@@ -27,17 +26,17 @@ public class SortedByOrderCategoryMapperTest {
                 origin.toDisplayModels(null))
                 .thenReturn(
                         asList(
-                                new CategoryDisplayModelFromEntity(new Category("TOMORROW", 2, Schedule.TOMORROW), 2),
-                                new CategoryDisplayModelFromEntity(new Category("TODAY", 1, Schedule.TODAY), 1),
-                                new CategoryDisplayModelFromEntity(new Category("UNSET", 0, Schedule.EMPTY), 0)));
+                                new CategoryDisplayModelFromEntity(new Category("TOMORROW", 2, "uuidTomorrowSchedule"), 2),
+                                new CategoryDisplayModelFromEntity(new Category("TODAY", 1, "uuidTodaySchedule"), 1),
+                                new CategoryDisplayModelFromEntity(new Category("UNSET", 0, "uuidEmptySchedule"), 0)));
     }
 
     @Test
     public void testToDisplayModels() {
         Assert.assertEquals(
-                asList(new CategoryDisplayModelFromEntity(new Category("UNSET", 0, Schedule.EMPTY), 0),
-                        new CategoryDisplayModelFromEntity(new Category("TODAY", 1, Schedule.TODAY), 1),
-                        new CategoryDisplayModelFromEntity(new Category("TOMORROW", 2, Schedule.TOMORROW), 2)),
+                asList(new CategoryDisplayModelFromEntity(new Category("UNSET", 0, "uuidEmptySchedule"), 0),
+                        new CategoryDisplayModelFromEntity(new Category("TODAY", 1, "uuidTodaySchedule"), 1),
+                        new CategoryDisplayModelFromEntity(new Category("TOMORROW", 2, "uuidTomorrowSchedule"), 2)),
                 new SortedByOrderCategoryMapper(origin)
                         .toDisplayModels(null));
     }

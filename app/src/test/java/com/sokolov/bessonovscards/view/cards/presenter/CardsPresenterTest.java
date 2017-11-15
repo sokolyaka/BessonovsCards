@@ -10,6 +10,7 @@ import com.sokolov.bessonovscards.entity.ITextMode;
 import com.sokolov.bessonovscards.view.cards.interactor.ICardsInteractor;
 import com.sokolov.bessonovscards.view.cards.view.ICardsView;
 
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -72,7 +73,7 @@ public class CardsPresenterTest {
             return null;
         }).when(cardsInteractor).onMoveCardToNextCategory(any(), any());
 
-        Card card = new Card("uuid", "text", "translate", "categoryName");
+        Card card = new Card("uuid", "text", "translate", "categoryName", LocalDate.now());
         cardsPresenter.onMoveCardToNextCategory(card);
         verify(cardsInteractor)
                 .onMoveCardToNextCategory(
@@ -91,7 +92,7 @@ public class CardsPresenterTest {
             return null;
         }).when(cardsInteractor).onMoveCardToNextCategory(any(), any());
 
-        Card card = new Card("uuid", "text", "translate", "categoryName");
+        Card card = new Card("uuid", "text", "translate", "categoryName", LocalDate.now());
         cardsPresenter.onMoveCardToNextCategory(card);
         InOrder cardsViewOrder = Mockito.inOrder(cardsView);
         cardsViewOrder.verify(cardsView).showSpinner();
@@ -106,7 +107,7 @@ public class CardsPresenterTest {
             return null;
         }).when(cardsInteractor).onMoveCardToPreviewsCategory(any(), any());
 
-        Card card = new Card("uuid", "text", "translate", "categoryName");
+        Card card = new Card("uuid", "text", "translate", "categoryName", LocalDate.now());
         cardsPresenter.onMoveCardToPreviewsCategory(card);
         verify(cardsInteractor)
                 .onMoveCardToPreviewsCategory(
@@ -125,7 +126,7 @@ public class CardsPresenterTest {
             return null;
         }).when(cardsInteractor).onMoveCardToPreviewsCategory(any(), any());
 
-        Card card = new Card("uuid", "text", "translate", "categoryName");
+        Card card = new Card("uuid", "text", "translate", "categoryName", LocalDate.now());
         cardsPresenter.onMoveCardToPreviewsCategory(card);
         InOrder cardsViewOrder = Mockito.inOrder(cardsView);
         cardsViewOrder.verify(cardsView).showSpinner();
@@ -135,7 +136,7 @@ public class CardsPresenterTest {
 
     @Test
     public void testOnEditCardSuccess() {
-        Card card = new Card("uuid", "text", "translate", "categoryName");
+        Card card = new Card("uuid", "text", "translate", "categoryName", LocalDate.now());
         doAnswer(invocation -> {
             invocation.getArgumentAt(1, IEditCardUseCase.Callback.class).onSuccess(card);
             return null;

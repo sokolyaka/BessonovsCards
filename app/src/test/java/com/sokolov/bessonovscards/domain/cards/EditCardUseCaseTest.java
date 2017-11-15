@@ -3,6 +3,7 @@ package com.sokolov.bessonovscards.domain.cards;
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.entity.Card;
 
+import org.joda.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mock;
@@ -23,7 +24,7 @@ public class EditCardUseCaseTest {
 
     @Test
     public void testExecute() {
-        Card card = new Card("uuid", "text", "translate", "categoryName");
+        Card card = new Card("uuid", "text", "translate", "categoryName", LocalDate.now());
         new EditCardUseCase(cardRep).execute(card, callback);
 
         verify(cardRep).save(card);
