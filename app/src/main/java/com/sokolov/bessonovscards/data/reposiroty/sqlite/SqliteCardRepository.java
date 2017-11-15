@@ -99,4 +99,9 @@ public class SqliteCardRepository implements ICardRepository {
     public void delete(String cardUuid) {
 
     }
+
+    @Override
+    public List<ICard> getAll() {
+        return null;
+    }
 }
