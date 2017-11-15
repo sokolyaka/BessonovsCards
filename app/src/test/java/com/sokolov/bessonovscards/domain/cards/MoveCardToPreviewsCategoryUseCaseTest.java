@@ -38,7 +38,7 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
                                 "text",
                                 "translate",
                                 "TOMORROW",
-                                LocalDate.now()),
+                                new LocalDate(1987, 6, 29)),
                         callback);
         verify(cardRepository)
                 .save(
@@ -64,7 +64,7 @@ public class MoveCardToPreviewsCategoryUseCaseTest {
                                 "text",
                                 "translate",
                                 "ONCE_PER_WEEK",
-                                LocalDate.now()),
+                                new LocalDate(1987, 6, 29)),
                         callback);
         verify(cardRepository)
                 .save(

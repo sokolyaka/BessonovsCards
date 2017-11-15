@@ -9,6 +9,8 @@ import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.entity.ICategory;
 import com.sokolov.bessonovscards.entity.ISchedule;
 
+import org.joda.time.LocalDate;
+
 public class MoveCardToPreviewsCategoryUseCase implements IMoveCardToPreviewsCategoryUseCase {
 
     private final ICardRepository cardRepository;
@@ -49,7 +51,8 @@ public class MoveCardToPreviewsCategoryUseCase implements IMoveCardToPreviewsCat
                             card.translate(),
                             prevCategory
                                     .name(),
-                            card.date()
+                            LocalDate
+                                    .now()
                                     .plusDays(
                                             nextSchedule.durationInDays())));
             callback.onSuccess();
