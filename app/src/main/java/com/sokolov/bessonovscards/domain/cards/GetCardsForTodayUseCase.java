@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.domain.home;
+package com.sokolov.bessonovscards.domain.cards;
 
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
 import com.sokolov.bessonovscards.entity.ICard;

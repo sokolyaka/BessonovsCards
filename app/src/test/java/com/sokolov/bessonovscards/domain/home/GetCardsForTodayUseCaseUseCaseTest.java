@@ -1,6 +1,8 @@
 package com.sokolov.bessonovscards.domain.home;
 
 import com.sokolov.bessonovscards.data.reposiroty.ICardRepository;
+import com.sokolov.bessonovscards.domain.cards.GetCardsForTodayUseCase;
+import com.sokolov.bessonovscards.domain.cards.IGetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.ICard;
 
