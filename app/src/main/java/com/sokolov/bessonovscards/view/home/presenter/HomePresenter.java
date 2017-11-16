@@ -1,13 +1,11 @@
 package com.sokolov.bessonovscards.view.home.presenter;
 
 import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
-import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
-import com.sokolov.bessonovscards.entity.ICategory;
 import com.sokolov.bessonovscards.view.home.interactor.IHomeInteractor;
 import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
+import com.sokolov.bessonovscards.view.home.presenter.callback.GetAllCategoriesCallback;
+import com.sokolov.bessonovscards.view.home.presenter.callback.WithSuccessMessageGetAllCategoriesCallback;
 import com.sokolov.bessonovscards.view.home.view.IHomeView;
-
-import java.util.List;
 
 public class HomePresenter implements IHomePresenter {
 
@@ -26,22 +24,9 @@ public class HomePresenter implements IHomePresenter {
         homeView.showSpinner();
         homeInteractor
                 .getAllCategories(
-                        new IGetAllCategoriesUseCase.Callback() {
-                            @Override
-                            public void onSuccess(List<ICategory> categories) {
-                                homeView.setCategories(
-                                        categoryMapper.toDisplayModels(
-                                                categories));
-                                homeView.hideSpinner();
-                            }
-
-                            @Override
-                            public void onError(Exception e) {
-                                homeView.hideSpinner();
-                                homeView.showError(e.getMessage());
-                            }
-                        }
-                );
+                        new GetAllCategoriesCallback(
+                                homeView,
+                                categoryMapper));
     }
 
     @Override
@@ -56,22 +41,11 @@ public class HomePresenter implements IHomePresenter {
                             public void onSuccess() {
                                 homeInteractor
                                         .getAllCategories(
-                                                new IGetAllCategoriesUseCase.Callback() {
-                                                    @Override
-                                                    public void onSuccess(List<ICategory> categories) {
-                                                        homeView.setCategories(
-                                                                categoryMapper.toDisplayModels(
-                                                                        categories));
-                                                        homeView.hideSpinner();
-                                                        homeView.showSuccessMessage();
-                                                    }
-
-                                                    @Override
-                                                    public void onError(Exception e) {
-                                                        homeView.hideSpinner();
-                                                        homeView.showError(e.getMessage());
-                                                    }
-                                                });
+                                                new WithSuccessMessageGetAllCategoriesCallback(
+                                                        new GetAllCategoriesCallback(
+                                                                homeView,
+                                                                categoryMapper),
+                                                        homeView));
                             }
 
                             @Override
