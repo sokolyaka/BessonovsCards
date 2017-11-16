@@ -4,7 +4,7 @@ import com.sokolov.bessonovscards.entity.ICard;
 
 import java.util.List;
 
-public interface IGetCardsForToday {
+public interface IGetCardsForTodayUseCase {
     void execute(Callback callback);
 
     interface Callback {

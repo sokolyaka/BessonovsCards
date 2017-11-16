@@ -20,7 +20,7 @@ import static org.mockito.Mockito.when;
 public class GetCardsForTodayUseCaseUseCaseTest {
 
     @Mock
-    private IGetCardsForToday.Callback callback;
+    private IGetCardsForTodayUseCase.Callback callback;
     @Mock
     private ICardRepository cardRepository;
 
