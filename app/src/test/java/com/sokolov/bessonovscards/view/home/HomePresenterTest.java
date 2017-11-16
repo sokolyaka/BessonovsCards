@@ -1,7 +1,7 @@
 package com.sokolov.bessonovscards.view.home;
 
+import com.sokolov.bessonovscards.domain.cards.IGetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
-import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
 import com.sokolov.bessonovscards.view.home.interactor.IHomeInteractor;
 import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
 import com.sokolov.bessonovscards.view.home.presenter.HomePresenter;
@@ -10,14 +10,10 @@ import com.sokolov.bessonovscards.view.home.view.IHomeView;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.mockito.InOrder;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 
-import static com.sokolov.bessonovscards.view.TestData.CATEGORIES;
 import static org.mockito.Matchers.any;
-import static org.mockito.Matchers.anyList;
 import static org.mockito.Matchers.anyString;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.doAnswer;
@@ -43,43 +39,27 @@ public class HomePresenterTest {
     public void testOnResume() {
         homePresenter.onResume();
         verify(homeView).showSpinner();
-        verify(homeInteractor).getAllCategories(any(IGetAllCategoriesUseCase.Callback.class));
+        verify(homeInteractor).getCardsForToday(any());
     }
 
-    @Test
-    public void testGetCategoriesOnSuccess() {
-        doAnswer(
-                invocation -> {
-                    ((IGetAllCategoriesUseCase.Callback) invocation.getArguments()[0]).onSuccess(CATEGORIES);
-                    return null;
-                })
-                .when(homeInteractor)
-                .getAllCategories(any(IGetAllCategoriesUseCase.Callback.class));
-
-        homePresenter.onResume();
-
-        verify(categoryMapper).toDisplayModels(CATEGORIES);
-        verify(homeView).setCategories(anyList());
-        verify(homeView).hideSpinner();
-    }
 
     @Test
     public void testGetCategoriesOnError() {
         doAnswer(
                 invocation -> {
-                    ((IGetAllCategoriesUseCase.Callback)
+                    ((IGetCardsForTodayUseCase.Callback)
                             invocation.getArguments()[0])
                             .onError(
                                     new RuntimeException("Exception message"));
                     return null;
                 })
                 .when(homeInteractor)
-                .getAllCategories(any(IGetAllCategoriesUseCase.Callback.class));
+                .getCardsForToday(any(IGetCardsForTodayUseCase.Callback.class));
 
         homePresenter.onResume();
 
         verify(homeView).hideSpinner();
-        verify(homeView).showError("Exception message");
+        verify(homeView).showError(new RuntimeException("Exception message").toString());
     }
 
     @Test
@@ -100,17 +80,10 @@ public class HomePresenterTest {
             ((IAddNewCardUseCase.Callback) invocation.getArguments()[2]).onSuccess();
             return null;
         }).when(homeInteractor).addNewCard(anyString(), anyString(), any());
-        doAnswer(invocation -> {
-            ((IGetAllCategoriesUseCase.Callback) invocation.getArguments()[0]).onSuccess(CATEGORIES);
-            return null;
-        }).when(homeInteractor).getAllCategories(any());
 
         homePresenter.onAddNewCard("new text", "new translate");
 
-        InOrder homeViewOrder = Mockito.inOrder(homeView);
-        homeViewOrder.verify(homeView).setCategories(anyList());
-        homeViewOrder.verify(homeView).hideSpinner();
-        homeViewOrder.verify(homeView).showSuccessMessage();
+        verify(homeInteractor).getCardsForToday(any());
     }
 
     @Test

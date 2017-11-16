@@ -12,6 +12,7 @@ import com.sokolov.bessonovscards.R;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.BessonovCardsSQLiteOpenHelper;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCardRepository;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepository;
+import com.sokolov.bessonovscards.domain.cards.GetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.home.AddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.GetAllCategoriesUseCase;
 import com.sokolov.bessonovscards.view.cards.CardsActivity;
@@ -25,6 +26,8 @@ import com.sokolov.bessonovscards.view.home.widget.NewCardDialog;
 import com.sokolov.bessonovscards.view.home.widget.SelectTextModeDialog;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 public class HomeActivity extends AppCompatActivity implements IHomeView {
@@ -51,7 +54,14 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
                                         "not set"),
                                 new GetAllCategoriesUseCase(
                                         new SqliteCategoryRepository(
-                                                openHelper))),
+                                                openHelper)),
+                                new GetCardsForTodayUseCase(
+                                        new SqliteCardRepository(
+                                                openHelper),
+                                        new HashSet<>(
+                                                Arrays.asList(
+                                                        "not set",
+                                                        "learned")))),
                         new CategoryMapper(
                                 new SqliteCardRepository(
                                         openHelper)));
