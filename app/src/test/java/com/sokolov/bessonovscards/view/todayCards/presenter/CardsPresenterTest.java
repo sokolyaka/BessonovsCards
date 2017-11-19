@@ -7,7 +7,7 @@ import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCas
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.ITextMode;
-import com.sokolov.bessonovscards.view.todayCards.interactor.ICardsInteractor;
+import com.sokolov.bessonovscards.view.todayCards.interactor.ITodayCardsInteractor;
 import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
 import org.joda.time.LocalDate;
@@ -29,9 +29,9 @@ import static org.mockito.Mockito.verify;
 
 public class CardsPresenterTest {
 
-    private ICardsPresenter cardsPresenter;
+    private ITodayCardsPresenter cardsPresenter;
     @Mock
-    private ICardsInteractor cardsInteractor;
+    private ITodayCardsInteractor cardsInteractor;
     @Mock
     private ICardsView cardsView;
     @Mock
@@ -40,7 +40,7 @@ public class CardsPresenterTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        cardsPresenter = new CardsPresenter(cardsView, cardsInteractor, textMode);
+        cardsPresenter = new TodayCardsPresenter(cardsView, cardsInteractor, textMode);
     }
 
     @Test

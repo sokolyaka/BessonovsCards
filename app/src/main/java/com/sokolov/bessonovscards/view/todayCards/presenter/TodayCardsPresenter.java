@@ -7,17 +7,17 @@ import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCas
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.entity.ITextMode;
-import com.sokolov.bessonovscards.view.todayCards.interactor.ICardsInteractor;
+import com.sokolov.bessonovscards.view.todayCards.interactor.ITodayCardsInteractor;
 import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
 import java.util.List;
 
-public class CardsPresenter implements ICardsPresenter {
+public class TodayCardsPresenter implements ITodayCardsPresenter {
     private final ICardsView cardsView;
-    private final ICardsInteractor cardsInteractor;
+    private final ITodayCardsInteractor cardsInteractor;
     private final ITextMode textMode;
 
-    public CardsPresenter(ICardsView cardsView, ICardsInteractor cardsInteractor, ITextMode textMode) {
+    public TodayCardsPresenter(ICardsView cardsView, ITodayCardsInteractor cardsInteractor, ITextMode textMode) {
         this.cardsView = cardsView;
         this.cardsInteractor = cardsInteractor;
         this.textMode = textMode;

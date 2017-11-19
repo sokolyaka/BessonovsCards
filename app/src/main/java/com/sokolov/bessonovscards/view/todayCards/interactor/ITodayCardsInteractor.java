@@ -7,7 +7,7 @@ import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCas
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 
-public interface ICardsInteractor {
+public interface ITodayCardsInteractor {
 
     void getShuffleCardsByCategory(IGetShuffleCardsByCategory.Callback callback);
 

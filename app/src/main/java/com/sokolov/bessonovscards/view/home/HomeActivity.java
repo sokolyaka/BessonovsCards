@@ -15,7 +15,7 @@ import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepositor
 import com.sokolov.bessonovscards.domain.cards.GetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.home.AddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.GetAllCategoriesUseCase;
-import com.sokolov.bessonovscards.view.todayCards.CardsActivity;
+import com.sokolov.bessonovscards.view.todayCards.TodayCardsActivity;
 import com.sokolov.bessonovscards.view.home.adapter.CategoryAdapter;
 import com.sokolov.bessonovscards.view.home.interactor.HomeInteractor;
 import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
@@ -77,7 +77,7 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
                                                 getSupportFragmentManager(),
                                                 "tag",
                                                 textMode -> {
-                                                    Intent intent = new Intent(getBaseContext(), CardsActivity.class);
+                                                    Intent intent = new Intent(getBaseContext(), TodayCardsActivity.class);
                                                     intent.putExtra("EXTRA_CATEGORY_NAME", categoryName);
                                                     intent.putExtra("EXTRA_TEXT_MODE", textMode);
                                                     startActivity(intent);

@@ -24,16 +24,16 @@ import com.sokolov.bessonovscards.view.todayCards.adapter.CardsPagerAdapter;
 import com.sokolov.bessonovscards.view.todayCards.adapter.OnCardEditListener;
 import com.sokolov.bessonovscards.view.todayCards.adapter.OnCategoryChangeListener;
 import com.sokolov.bessonovscards.view.todayCards.adapter.OnTextPronounceListener;
-import com.sokolov.bessonovscards.view.todayCards.interactor.CardsInteractor;
-import com.sokolov.bessonovscards.view.todayCards.presenter.CardsPresenter;
-import com.sokolov.bessonovscards.view.todayCards.presenter.ICardsPresenter;
+import com.sokolov.bessonovscards.view.todayCards.interactor.TodayCardsInteractor;
+import com.sokolov.bessonovscards.view.todayCards.presenter.TodayCardsPresenter;
+import com.sokolov.bessonovscards.view.todayCards.presenter.ITodayCardsPresenter;
 import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
 import java.util.List;
 
-public class CardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener, OnTextPronounceListener {
+public class TodayCardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener, OnTextPronounceListener {
 
-    private ICardsPresenter cardsPresenter;
+    private ITodayCardsPresenter cardsPresenter;
     private CardsPagerAdapter adapter;
 
     @Override
@@ -44,9 +44,9 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
         BessonovCardsSQLiteOpenHelper openHelper = new BessonovCardsSQLiteOpenHelper(this);
 
         cardsPresenter =
-                new CardsPresenter(
+                new TodayCardsPresenter(
                         this,
-                        new CardsInteractor(
+                        new TodayCardsInteractor(
                                 new GetShuffleCardsByCategory(
                                         new SqliteCardRepository(
                                                 openHelper),

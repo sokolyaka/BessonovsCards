@@ -7,14 +7,14 @@ import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCas
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 
-public class CardsInteractor implements ICardsInteractor {
+public class TodayCardsInteractor implements ITodayCardsInteractor {
     private final IGetShuffleCardsByCategory getShuffleCardsByCategory;
     private final IMoveCardToNextCategoryUseCase moveCardToNextCategoryUseCase;
     private final IMoveCardToPreviewsCategoryUseCase moveCardToPreviewsCategoryUseCase;
     private final IEditCardUseCase editCardUseCase;
     private final IPronounceTextUseCase pronounceUseCase;
 
-    public CardsInteractor(
+    public TodayCardsInteractor(
             IGetShuffleCardsByCategory getShuffleCardsByCategory,
             IMoveCardToNextCategoryUseCase moveCardToNextCategoryUseCase,
             IMoveCardToPreviewsCategoryUseCase moveCardToPreviewsCategoryUseCase,

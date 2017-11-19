@@ -2,7 +2,7 @@ package com.sokolov.bessonovscards.view.todayCards.presenter;
 
 import com.sokolov.bessonovscards.entity.ICard;
 
-public interface ICardsPresenter {
+public interface ITodayCardsPresenter {
     void onCreate();
 
     void onMoveCardToNextCategory(ICard card);
