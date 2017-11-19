@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.cards.presenter;
+package com.sokolov.bessonovscards.view.todayCards.presenter;
 
 import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
@@ -7,8 +7,8 @@ import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCas
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.entity.ITextMode;
-import com.sokolov.bessonovscards.view.cards.interactor.ICardsInteractor;
-import com.sokolov.bessonovscards.view.cards.view.ICardsView;
+import com.sokolov.bessonovscards.view.todayCards.interactor.ICardsInteractor;
+import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
 import java.util.List;
 

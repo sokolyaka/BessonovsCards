@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.cards;
+package com.sokolov.bessonovscards.view.todayCards;
 
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -20,14 +20,14 @@ import com.sokolov.bessonovscards.entity.AndoidTextToSpeech;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.entity.ITextMode;
 import com.sokolov.bessonovscards.entity.TextMode;
-import com.sokolov.bessonovscards.view.cards.adapter.CardsPagerAdapter;
-import com.sokolov.bessonovscards.view.cards.adapter.OnCardEditListener;
-import com.sokolov.bessonovscards.view.cards.adapter.OnCategoryChangeListener;
-import com.sokolov.bessonovscards.view.cards.adapter.OnTextPronounceListener;
-import com.sokolov.bessonovscards.view.cards.interactor.CardsInteractor;
-import com.sokolov.bessonovscards.view.cards.presenter.CardsPresenter;
-import com.sokolov.bessonovscards.view.cards.presenter.ICardsPresenter;
-import com.sokolov.bessonovscards.view.cards.view.ICardsView;
+import com.sokolov.bessonovscards.view.todayCards.adapter.CardsPagerAdapter;
+import com.sokolov.bessonovscards.view.todayCards.adapter.OnCardEditListener;
+import com.sokolov.bessonovscards.view.todayCards.adapter.OnCategoryChangeListener;
+import com.sokolov.bessonovscards.view.todayCards.adapter.OnTextPronounceListener;
+import com.sokolov.bessonovscards.view.todayCards.interactor.CardsInteractor;
+import com.sokolov.bessonovscards.view.todayCards.presenter.CardsPresenter;
+import com.sokolov.bessonovscards.view.todayCards.presenter.ICardsPresenter;
+import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
 import java.util.List;
 

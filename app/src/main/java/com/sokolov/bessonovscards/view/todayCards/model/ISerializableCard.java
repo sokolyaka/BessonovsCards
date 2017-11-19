@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.cards.model;
+package com.sokolov.bessonovscards.view.todayCards.model;
 
 import com.sokolov.bessonovscards.entity.ICard;
 

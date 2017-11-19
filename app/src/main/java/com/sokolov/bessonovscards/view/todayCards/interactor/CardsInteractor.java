@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.cards.interactor;
+package com.sokolov.bessonovscards.view.todayCards.interactor;
 
 import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
 import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;

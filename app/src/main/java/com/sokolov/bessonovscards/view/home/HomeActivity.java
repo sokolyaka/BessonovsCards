@@ -15,7 +15,7 @@ import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepositor
 import com.sokolov.bessonovscards.domain.cards.GetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.home.AddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.GetAllCategoriesUseCase;
-import com.sokolov.bessonovscards.view.cards.CardsActivity;
+import com.sokolov.bessonovscards.view.todayCards.CardsActivity;
 import com.sokolov.bessonovscards.view.home.adapter.CategoryAdapter;
 import com.sokolov.bessonovscards.view.home.interactor.HomeInteractor;
 import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;

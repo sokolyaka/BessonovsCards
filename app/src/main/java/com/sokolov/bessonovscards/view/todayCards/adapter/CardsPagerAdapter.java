@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.cards.adapter;
+package com.sokolov.bessonovscards.view.todayCards.adapter;
 
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
