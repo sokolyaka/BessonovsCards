@@ -12,7 +12,7 @@ import com.sokolov.bessonovscards.data.reposiroty.sqlite.BessonovCardsSQLiteOpen
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCardRepository;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepository;
 import com.sokolov.bessonovscards.domain.cards.EditCardUseCase;
-import com.sokolov.bessonovscards.domain.cards.GetShuffleCardsByCategory;
+import com.sokolov.bessonovscards.domain.cards.GetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.PronounceTextUseCase;
@@ -25,10 +25,11 @@ import com.sokolov.bessonovscards.view.todayCards.adapter.OnCardEditListener;
 import com.sokolov.bessonovscards.view.todayCards.adapter.OnCategoryChangeListener;
 import com.sokolov.bessonovscards.view.todayCards.adapter.OnTextPronounceListener;
 import com.sokolov.bessonovscards.view.todayCards.interactor.TodayCardsInteractor;
-import com.sokolov.bessonovscards.view.todayCards.presenter.TodayCardsPresenter;
 import com.sokolov.bessonovscards.view.todayCards.presenter.ITodayCardsPresenter;
+import com.sokolov.bessonovscards.view.todayCards.presenter.TodayCardsPresenter;
 import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
+import java.util.HashSet;
 import java.util.List;
 
 public class TodayCardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener, OnTextPronounceListener {
@@ -47,12 +48,10 @@ public class TodayCardsActivity extends AppCompatActivity implements ICardsView,
                 new TodayCardsPresenter(
                         this,
                         new TodayCardsInteractor(
-                                new GetShuffleCardsByCategory(
+                                new GetCardsForTodayUseCase(
                                         new SqliteCardRepository(
                                                 openHelper),
-                                        getIntent()
-                                                .getStringExtra(
-                                                        "EXTRA_CATEGORY_NAME")),
+                                        new HashSet<>()),
                                 new MoveCardToNextCategoryUseCase(
                                         new SqliteCardRepository(
                                                 openHelper),

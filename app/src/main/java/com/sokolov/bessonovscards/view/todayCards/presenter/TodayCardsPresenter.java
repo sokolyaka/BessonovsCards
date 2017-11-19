@@ -1,7 +1,7 @@
 package com.sokolov.bessonovscards.view.todayCards.presenter;
 
 import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
-import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
+import com.sokolov.bessonovscards.domain.cards.IGetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
@@ -10,6 +10,7 @@ import com.sokolov.bessonovscards.entity.ITextMode;
 import com.sokolov.bessonovscards.view.todayCards.interactor.ITodayCardsInteractor;
 import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
+import java.util.Collections;
 import java.util.List;
 
 public class TodayCardsPresenter implements ITodayCardsPresenter {
@@ -26,10 +27,11 @@ public class TodayCardsPresenter implements ITodayCardsPresenter {
     @Override
     public void onCreate() {
         cardsInteractor
-                .getShuffleCardsByCategory(
-                        new IGetShuffleCardsByCategory.Callback() {
+                .getCardsForTodayUseCase(
+                        new IGetCardsForTodayUseCase.Callback() {
                             @Override
                             public void onSuccess(List<ICard> cards) {
+                                Collections.shuffle(cards);
                                 cardsView.refreshData(cards, textMode);
                             }
 
