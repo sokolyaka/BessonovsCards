@@ -11,4 +11,6 @@ public interface ICardRepository {
     List<ICard> getAllByCategoryName(String categoryName);
 
     void delete(String cardUuid);
+
+    List<ICard> getAll();
 }

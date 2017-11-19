@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.cards;
+package com.sokolov.bessonovscards.view.todayCards;
 
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
@@ -12,7 +12,7 @@ import com.sokolov.bessonovscards.data.reposiroty.sqlite.BessonovCardsSQLiteOpen
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCardRepository;
 import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepository;
 import com.sokolov.bessonovscards.domain.cards.EditCardUseCase;
-import com.sokolov.bessonovscards.domain.cards.GetShuffleCardsByCategory;
+import com.sokolov.bessonovscards.domain.cards.GetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.MoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.PronounceTextUseCase;
@@ -20,20 +20,21 @@ import com.sokolov.bessonovscards.entity.AndoidTextToSpeech;
 import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.entity.ITextMode;
 import com.sokolov.bessonovscards.entity.TextMode;
-import com.sokolov.bessonovscards.view.cards.adapter.CardsPagerAdapter;
-import com.sokolov.bessonovscards.view.cards.adapter.OnCardEditListener;
-import com.sokolov.bessonovscards.view.cards.adapter.OnCategoryChangeListener;
-import com.sokolov.bessonovscards.view.cards.adapter.OnTextPronounceListener;
-import com.sokolov.bessonovscards.view.cards.interactor.CardsInteractor;
-import com.sokolov.bessonovscards.view.cards.presenter.CardsPresenter;
-import com.sokolov.bessonovscards.view.cards.presenter.ICardsPresenter;
-import com.sokolov.bessonovscards.view.cards.view.ICardsView;
+import com.sokolov.bessonovscards.view.todayCards.adapter.CardsPagerAdapter;
+import com.sokolov.bessonovscards.view.todayCards.adapter.OnCardEditListener;
+import com.sokolov.bessonovscards.view.todayCards.adapter.OnCategoryChangeListener;
+import com.sokolov.bessonovscards.view.todayCards.adapter.OnTextPronounceListener;
+import com.sokolov.bessonovscards.view.todayCards.interactor.TodayCardsInteractor;
+import com.sokolov.bessonovscards.view.todayCards.presenter.ITodayCardsPresenter;
+import com.sokolov.bessonovscards.view.todayCards.presenter.TodayCardsPresenter;
+import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
+import java.util.HashSet;
 import java.util.List;
 
-public class CardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener, OnTextPronounceListener {
+public class TodayCardsActivity extends AppCompatActivity implements ICardsView, OnCategoryChangeListener, OnCardEditListener, OnTextPronounceListener {
 
-    private ICardsPresenter cardsPresenter;
+    private ITodayCardsPresenter cardsPresenter;
     private CardsPagerAdapter adapter;
 
     @Override
@@ -44,15 +45,13 @@ public class CardsActivity extends AppCompatActivity implements ICardsView, OnCa
         BessonovCardsSQLiteOpenHelper openHelper = new BessonovCardsSQLiteOpenHelper(this);
 
         cardsPresenter =
-                new CardsPresenter(
+                new TodayCardsPresenter(
                         this,
-                        new CardsInteractor(
-                                new GetShuffleCardsByCategory(
+                        new TodayCardsInteractor(
+                                new GetCardsForTodayUseCase(
                                         new SqliteCardRepository(
                                                 openHelper),
-                                        getIntent()
-                                                .getStringExtra(
-                                                        "EXTRA_CATEGORY_NAME")),
+                                        new HashSet<>()),
                                 new MoveCardToNextCategoryUseCase(
                                         new SqliteCardRepository(
                                                 openHelper),

@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.cards.adapter;
+package com.sokolov.bessonovscards.view.todayCards.adapter;
 
 public interface OnTextPronounceListener {
 

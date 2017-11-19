@@ -1,4 +1,4 @@
-package com.sokolov.bessonovscards.view.cards.adapter;
+package com.sokolov.bessonovscards.view.todayCards.adapter;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -11,8 +11,8 @@ import android.widget.TextView;
 import com.sokolov.bessonovscards.R;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.ICard;
-import com.sokolov.bessonovscards.view.cards.model.ISerializableCard;
-import com.sokolov.bessonovscards.view.cards.model.SerializableCard;
+import com.sokolov.bessonovscards.view.todayCards.model.ISerializableCard;
+import com.sokolov.bessonovscards.view.todayCards.model.SerializableCard;
 
 public class PlaceholderFragment extends Fragment {
 

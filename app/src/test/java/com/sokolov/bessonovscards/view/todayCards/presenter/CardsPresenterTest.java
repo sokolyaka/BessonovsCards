@@ -1,14 +1,14 @@
-package com.sokolov.bessonovscards.view.cards.presenter;
+package com.sokolov.bessonovscards.view.todayCards.presenter;
 
 import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
-import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
+import com.sokolov.bessonovscards.domain.cards.IGetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.Card;
 import com.sokolov.bessonovscards.entity.ITextMode;
-import com.sokolov.bessonovscards.view.cards.interactor.ICardsInteractor;
-import com.sokolov.bessonovscards.view.cards.view.ICardsView;
+import com.sokolov.bessonovscards.view.todayCards.interactor.ITodayCardsInteractor;
+import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
 import org.joda.time.LocalDate;
 import org.junit.Before;
@@ -29,9 +29,9 @@ import static org.mockito.Mockito.verify;
 
 public class CardsPresenterTest {
 
-    private ICardsPresenter cardsPresenter;
+    private ITodayCardsPresenter cardsPresenter;
     @Mock
-    private ICardsInteractor cardsInteractor;
+    private ITodayCardsInteractor cardsInteractor;
     @Mock
     private ICardsView cardsView;
     @Mock
@@ -40,28 +40,28 @@ public class CardsPresenterTest {
     @Before
     public void setUp() {
         MockitoAnnotations.initMocks(this);
-        cardsPresenter = new CardsPresenter(cardsView, cardsInteractor, textMode);
+        cardsPresenter = new TodayCardsPresenter(cardsView, cardsInteractor, textMode);
     }
 
     @Test
     public void testOnCreateSuccess() {
         Mockito.doAnswer(invocation -> {
-            ((IGetShuffleCardsByCategory.Callback) invocation.getArguments()[0]).onSuccess(Collections.EMPTY_LIST);
+            ((IGetCardsForTodayUseCase.Callback) invocation.getArguments()[0]).onSuccess(Collections.EMPTY_LIST);
             return null;
-        }).when(cardsInteractor).getShuffleCardsByCategory(any());
+        }).when(cardsInteractor).getCardsForTodayUseCase(any());
         cardsPresenter.onCreate();
         verify(cardsInteractor)
-                .getShuffleCardsByCategory(
-                        any(IGetShuffleCardsByCategory.Callback.class));
+                .getCardsForTodayUseCase(
+                        any(IGetCardsForTodayUseCase.Callback.class));
         verify(cardsView).refreshData(anyList(), eq(textMode));
     }
 
     @Test
     public void testOnCreateError() {
         Mockito.doAnswer(invocation -> {
-            ((IGetShuffleCardsByCategory.Callback) invocation.getArguments()[0]).onError(new Exception());
+            ((IGetCardsForTodayUseCase.Callback) invocation.getArguments()[0]).onError(new Exception());
             return null;
-        }).when(cardsInteractor).getShuffleCardsByCategory(any());
+        }).when(cardsInteractor).getCardsForTodayUseCase(any());
         cardsPresenter.onCreate();
         verify(cardsView).showError(anyString());
     }

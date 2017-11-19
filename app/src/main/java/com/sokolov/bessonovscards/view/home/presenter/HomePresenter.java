@@ -1,10 +1,12 @@
 package com.sokolov.bessonovscards.view.home.presenter;
 
+import com.sokolov.bessonovscards.domain.cards.IGetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
-import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
-import com.sokolov.bessonovscards.entity.ICategory;
+import com.sokolov.bessonovscards.entity.ICard;
 import com.sokolov.bessonovscards.view.home.interactor.IHomeInteractor;
 import com.sokolov.bessonovscards.view.home.mapper.ICategoryMapper;
+import com.sokolov.bessonovscards.view.home.model.TodayCategoryDisplayModel;
+import com.sokolov.bessonovscards.view.home.presenter.callback.GetAllCategoriesCallback;
 import com.sokolov.bessonovscards.view.home.view.IHomeView;
 
 import java.util.List;
@@ -25,23 +27,23 @@ public class HomePresenter implements IHomePresenter {
     public void onResume() {
         homeView.showSpinner();
         homeInteractor
-                .getAllCategories(
-                        new IGetAllCategoriesUseCase.Callback() {
+                .getCardsForToday(
+                        new IGetCardsForTodayUseCase.Callback() {
                             @Override
-                            public void onSuccess(List<ICategory> categories) {
-                                homeView.setCategories(
-                                        categoryMapper.toDisplayModels(
-                                                categories));
-                                homeView.hideSpinner();
+                            public void onSuccess(List<ICard> cards) {
+                                homeInteractor.getAllCategories(
+                                        new GetAllCategoriesCallback(
+                                                homeView,
+                                                categoryMapper,
+                                                new TodayCategoryDisplayModel(cards.size())));
                             }
 
                             @Override
                             public void onError(Exception e) {
                                 homeView.hideSpinner();
-                                homeView.showError(e.getMessage());
+                                homeView.showError(e.toString());
                             }
-                        }
-                );
+                        });
     }
 
     @Override
@@ -52,26 +54,12 @@ public class HomePresenter implements IHomePresenter {
                         text,
                         translate,
                         new IAddNewCardUseCase.Callback() {
+
                             @Override
                             public void onSuccess() {
-                                homeInteractor
-                                        .getAllCategories(
-                                                new IGetAllCategoriesUseCase.Callback() {
-                                                    @Override
-                                                    public void onSuccess(List<ICategory> categories) {
-                                                        homeView.setCategories(
-                                                                categoryMapper.toDisplayModels(
-                                                                        categories));
-                                                        homeView.hideSpinner();
-                                                        homeView.showSuccessMessage();
-                                                    }
-
-                                                    @Override
-                                                    public void onError(Exception e) {
-                                                        homeView.hideSpinner();
-                                                        homeView.showError(e.getMessage());
-                                                    }
-                                                });
+                                homeView.hideSpinner();
+                                homeView.showSuccessMessage();
+                                onResume();
                             }
 
                             @Override

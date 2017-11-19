@@ -1,27 +1,27 @@
-package com.sokolov.bessonovscards.view.cards.interactor;
+package com.sokolov.bessonovscards.view.todayCards.interactor;
 
 import com.sokolov.bessonovscards.domain.cards.IEditCardUseCase;
-import com.sokolov.bessonovscards.domain.cards.IGetShuffleCardsByCategory;
+import com.sokolov.bessonovscards.domain.cards.IGetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToNextCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IMoveCardToPreviewsCategoryUseCase;
 import com.sokolov.bessonovscards.domain.cards.IPronounceTextUseCase;
 import com.sokolov.bessonovscards.entity.ICard;
 
-public class CardsInteractor implements ICardsInteractor {
-    private final IGetShuffleCardsByCategory getShuffleCardsByCategory;
+public class TodayCardsInteractor implements ITodayCardsInteractor {
+    private final IGetCardsForTodayUseCase getCardsForTodayUseCase;
     private final IMoveCardToNextCategoryUseCase moveCardToNextCategoryUseCase;
     private final IMoveCardToPreviewsCategoryUseCase moveCardToPreviewsCategoryUseCase;
     private final IEditCardUseCase editCardUseCase;
     private final IPronounceTextUseCase pronounceUseCase;
 
-    public CardsInteractor(
-            IGetShuffleCardsByCategory getShuffleCardsByCategory,
+    public TodayCardsInteractor(
+            IGetCardsForTodayUseCase getCardsForTodayUseCase,
             IMoveCardToNextCategoryUseCase moveCardToNextCategoryUseCase,
             IMoveCardToPreviewsCategoryUseCase moveCardToPreviewsCategoryUseCase,
             IEditCardUseCase editCardUseCase,
             IPronounceTextUseCase pronounceUseCase) {
 
-        this.getShuffleCardsByCategory = getShuffleCardsByCategory;
+        this.getCardsForTodayUseCase = getCardsForTodayUseCase;
         this.moveCardToNextCategoryUseCase = moveCardToNextCategoryUseCase;
         this.moveCardToPreviewsCategoryUseCase = moveCardToPreviewsCategoryUseCase;
         this.editCardUseCase = editCardUseCase;
@@ -29,8 +29,8 @@ public class CardsInteractor implements ICardsInteractor {
     }
 
     @Override
-    public void getShuffleCardsByCategory(IGetShuffleCardsByCategory.Callback callback) {
-        getShuffleCardsByCategory.execute(callback);
+    public void getCardsForTodayUseCase(IGetCardsForTodayUseCase.Callback callback) {
+        getCardsForTodayUseCase.execute(callback);
     }
 
     @Override
