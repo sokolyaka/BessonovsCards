@@ -34,7 +34,7 @@
             android:textSize="@dimen/text_size"
             android:visibility="invisible"/>
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
             android:layout_height="3dp"
             android:layout_alignTop="@+id/bottom_bar"
