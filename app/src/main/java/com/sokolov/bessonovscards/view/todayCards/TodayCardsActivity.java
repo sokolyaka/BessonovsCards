@@ -29,6 +29,7 @@ import com.sokolov.bessonovscards.view.todayCards.presenter.ITodayCardsPresenter
 import com.sokolov.bessonovscards.view.todayCards.presenter.TodayCardsPresenter;
 import com.sokolov.bessonovscards.view.todayCards.view.ICardsView;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -51,7 +52,10 @@ public class TodayCardsActivity extends AppCompatActivity implements ICardsView,
                                 new GetCardsForTodayUseCase(
                                         new SqliteCardRepository(
                                                 openHelper),
-                                        new HashSet<>()),
+                                        new HashSet<>(
+                                                Arrays.asList(
+                                                        "not set",
+                                                        "learned"))),
                                 new MoveCardToNextCategoryUseCase(
                                         new SqliteCardRepository(
                                                 openHelper),
