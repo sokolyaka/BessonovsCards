@@ -2,18 +2,14 @@
                 xmlns:tools="http://schemas.android.com/tools"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingBottom="@dimen/activity_vertical_margin"
-                android:paddingLeft="@dimen/activity_horizontal_margin"
-                android:paddingRight="@dimen/activity_horizontal_margin"
-                android:paddingTop="@dimen/activity_vertical_margin"
                 tools:context="com.sokolov.bessonovscards.view.todayCards.adapter.PlaceholderFragment">
 
     <RelativeLayout
         android:id="@+id/rl_static_text"
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:clickable="true"
-        android:focusableInTouchMode="true"
-        android:layout_height="match_parent">
+        android:focusableInTouchMode="true">
 
         <TextView
             android:id="@+id/tv_text"
@@ -38,39 +34,49 @@
             android:textSize="@dimen/text_size"
             android:visibility="invisible"/>
 
-        <Button
-            android:id="@+id/btn_preview_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="to previews category"/>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:layout_alignTop="@+id/bottom_bar"
+            android:background="@drawable/shadow"/>
 
-        <Button
-            android:id="@+id/btn_next_category"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:text="to next category"/>
-
-        <Button
-            android:id="@+id/btn_edit_card"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/bottom_bar"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentRight="true"
-            android:text="edit"/>
+            android:clickable="true"
+            android:gravity="center_vertical|end"
+            android:orientation="horizontal">
 
-        <Button
-            android:id="@+id/btn_pronounce_card"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentLeft="true"
-            android:text="pronounce"/>
+            <ImageButton
+                android:id="@+id/btn_preview_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/ic_thumb_down_black_24dp"/>
 
+            <ImageButton
+                android:id="@+id/btn_next_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/ic_thumb_up_black_24dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_edit_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/ic_mode_edit_black_24dp"/>
+
+            <ImageButton
+                android:id="@+id/btn_pronounce_card"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:background="@drawable/ic_volume_up_black_24dp"/>
+        </LinearLayout>
     </RelativeLayout>
 
     <RelativeLayout
