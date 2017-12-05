@@ -82,6 +82,56 @@ public class MoveCardToNextCategoryUseCaseTest {
     }
 
     @Test
+    public void toOncePerMonth() throws Exception {
+        new MoveCardToNextCategoryUseCase(
+                cardRepository,
+                categoryRepository,
+                scheduleRepository)
+                .execute(
+                        new Card(
+                                "uuid",
+                                "text",
+                                "translate",
+                                "ONCE_PER_WEEK",
+                                new LocalDate(1987, 6, 29)),
+                        callback);
+        verify(cardRepository)
+                .save(
+                        new Card(
+                                "uuid",
+                                "text",
+                                "translate",
+                                "ONCE_PER_MONTH",
+                                LocalDate.now().plusDays(30)));
+        verify(callback).onSuccess();
+    }
+
+    @Test
+    public void toLearned() throws Exception {
+        new MoveCardToNextCategoryUseCase(
+                cardRepository,
+                categoryRepository,
+                scheduleRepository)
+                .execute(
+                        new Card(
+                                "uuid",
+                                "text",
+                                "translate",
+                                "ONCE_PER_MONTH",
+                                new LocalDate(1987, 6, 29)),
+                        callback);
+        verify(cardRepository)
+                .save(
+                        new Card(
+                                "uuid",
+                                "text",
+                                "translate",
+                                "LEARNED",
+                                LocalDate.now()));
+        verify(callback).onSuccess();
+    }
+
+    @Test
     public void overLastCategory() throws Exception {
         new MoveCardToNextCategoryUseCase(
                 cardRepository,
