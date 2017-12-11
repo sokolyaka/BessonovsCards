@@ -15,7 +15,7 @@ import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepositor
 import com.sokolov.bessonovscards.domain.cards.GetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.home.AddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.GetAllCategoriesUseCase;
-import com.sokolov.bessonovscards.view.todayCards.TodayCardsActivity;
+import com.sokolov.bessonovscards.view.category.CategoryActivity;
 import com.sokolov.bessonovscards.view.home.adapter.CategoryAdapter;
 import com.sokolov.bessonovscards.view.home.interactor.HomeInteractor;
 import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
@@ -24,6 +24,7 @@ import com.sokolov.bessonovscards.view.home.presenter.HomePresenter;
 import com.sokolov.bessonovscards.view.home.view.IHomeView;
 import com.sokolov.bessonovscards.view.home.widget.NewCardDialog;
 import com.sokolov.bessonovscards.view.home.widget.SelectTextModeDialog;
+import com.sokolov.bessonovscards.view.todayCards.TodayCardsActivity;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -71,17 +72,24 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
         categoryAdapter =
                 new CategoryAdapter(
                         new ArrayList<>(),
-                        categoryName ->
+                        categoryName -> {
+                            if (categoryName.equals("Today")) {
                                 new SelectTextModeDialog()
                                         .show(
                                                 getSupportFragmentManager(),
                                                 "tag",
                                                 textMode -> {
                                                     Intent intent = new Intent(getBaseContext(), TodayCardsActivity.class);
-                                                    intent.putExtra("EXTRA_CATEGORY_NAME", categoryName);
                                                     intent.putExtra("EXTRA_TEXT_MODE", textMode);
                                                     startActivity(intent);
-                                                }));
+                                                });
+
+                            } else {
+                                Intent intent = new Intent(getBaseContext(), CategoryActivity.class);
+                                intent.putExtra("EXTRA_CATEGORY_NAME", categoryName);
+                                startActivity(intent);
+                            }
+                        });
 
         recyclerView.setAdapter(categoryAdapter);
         findViewById(R.id.fab)
