@@ -12,6 +12,8 @@ import com.sokolov.bessonovscards.entity.ICategory;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CategoryContract.Entity.COLUMN_NAME;
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CategoryContract.Entity.COLUMN_ORDINAL;
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CategoryContract.Entity.COLUMN_SCHEDULE;
@@ -21,6 +23,7 @@ public class SqliteCategoryRepository implements ICategoryRepository {
 
     private final SQLiteOpenHelper sqLiteOpenHelper;
 
+    @Inject
     public SqliteCategoryRepository(SQLiteOpenHelper sqLiteOpenHelper) {
         this.sqLiteOpenHelper = sqLiteOpenHelper;
     }

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import javax.inject.Inject;
+
 public class GetCardsForTodayUseCase implements IGetCardsForTodayUseCase {
 
     private final ICardRepository cardRepository;
@@ -18,6 +20,7 @@ public class GetCardsForTodayUseCase implements IGetCardsForTodayUseCase {
      * @param cardRepository
      * @param categoryNamesToIgnore categories what should ignore
      */
+    @Inject
     public GetCardsForTodayUseCase(ICardRepository cardRepository, Set<String> categoryNamesToIgnore) {
 
         this.cardRepository = cardRepository;

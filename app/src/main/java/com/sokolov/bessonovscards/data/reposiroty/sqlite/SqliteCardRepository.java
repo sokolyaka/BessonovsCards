@@ -17,6 +17,8 @@ import org.joda.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CardContract.Entity.COLUMN_CATEGORY_NAME;
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CardContract.Entity.COLUMN_ID;
 import static com.sokolov.bessonovscards.data.reposiroty.sqlite.contract.CardContract.Entity.COLUMN_TEXT;
@@ -27,6 +29,7 @@ public class SqliteCardRepository implements ICardRepository {
 
     private final SQLiteOpenHelper sqLiteOpenHelper;
 
+    @Inject
     public SqliteCardRepository(SQLiteOpenHelper sqLiteOpenHelper) {
         this.sqLiteOpenHelper = sqLiteOpenHelper;
     }

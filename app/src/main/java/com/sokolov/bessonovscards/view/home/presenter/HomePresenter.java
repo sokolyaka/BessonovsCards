@@ -11,12 +11,15 @@ import com.sokolov.bessonovscards.view.home.view.IHomeView;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 public class HomePresenter implements IHomePresenter {
 
     private final IHomeView homeView;
     private final IHomeInteractor homeInteractor;
     private final ICategoryMapper categoryMapper;
 
+    @Inject
     public HomePresenter(IHomeView homeView, IHomeInteractor homeInteractor, ICategoryMapper categoryMapper) {
         this.homeView = homeView;
         this.homeInteractor = homeInteractor;

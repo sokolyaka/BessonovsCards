@@ -8,10 +8,13 @@ import org.joda.time.LocalDate;
 
 import java.util.UUID;
 
+import javax.inject.Inject;
+
 public class AddNewCardUseCase implements IAddNewCardUseCase {
     private final ICardRepository cardRepository;
     private final String categoryName;
 
+    @Inject
     public AddNewCardUseCase(ICardRepository cardRepository, String categoryName) {
         this.cardRepository = cardRepository;
         this.categoryName = categoryName;

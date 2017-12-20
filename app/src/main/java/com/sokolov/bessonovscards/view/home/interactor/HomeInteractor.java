@@ -4,11 +4,14 @@ import com.sokolov.bessonovscards.domain.cards.IGetCardsForTodayUseCase;
 import com.sokolov.bessonovscards.domain.home.IAddNewCardUseCase;
 import com.sokolov.bessonovscards.domain.home.IGetAllCategoriesUseCase;
 
+import javax.inject.Inject;
+
 public class HomeInteractor implements IHomeInteractor {
     private final IAddNewCardUseCase addNewCardUseCase;
     private final IGetAllCategoriesUseCase getAllCategoriesUseCase;
     private final IGetCardsForTodayUseCase getCardsForTodayUseCase;
 
+    @Inject
     public HomeInteractor(IAddNewCardUseCase addNewCardUseCase, IGetAllCategoriesUseCase getAllCategoriesUseCase, IGetCardsForTodayUseCase getCardsForTodayUseCase) {
         this.addNewCardUseCase = addNewCardUseCase;
         this.getAllCategoriesUseCase = getAllCategoriesUseCase;

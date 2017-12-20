@@ -9,16 +9,11 @@ import android.support.v7.widget.Toolbar;
 import android.widget.Toast;
 
 import com.sokolov.bessonovscards.R;
-import com.sokolov.bessonovscards.data.reposiroty.sqlite.BessonovCardsSQLiteOpenHelper;
-import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCardRepository;
-import com.sokolov.bessonovscards.data.reposiroty.sqlite.SqliteCategoryRepository;
-import com.sokolov.bessonovscards.domain.cards.GetCardsForTodayUseCase;
-import com.sokolov.bessonovscards.domain.home.AddNewCardUseCase;
-import com.sokolov.bessonovscards.domain.home.GetAllCategoriesUseCase;
+import com.sokolov.bessonovscards.di.ContextModule;
+import com.sokolov.bessonovscards.di.DaggerHomeComponent;
+import com.sokolov.bessonovscards.di.HomeModule;
 import com.sokolov.bessonovscards.view.category.CategoryActivity;
 import com.sokolov.bessonovscards.view.home.adapter.CategoryAdapter;
-import com.sokolov.bessonovscards.view.home.interactor.HomeInteractor;
-import com.sokolov.bessonovscards.view.home.mapper.CategoryMapper;
 import com.sokolov.bessonovscards.view.home.model.ICategoryDisplayModel;
 import com.sokolov.bessonovscards.view.home.presenter.HomePresenter;
 import com.sokolov.bessonovscards.view.home.view.IHomeView;
@@ -42,29 +37,21 @@ public class HomeActivity extends AppCompatActivity implements IHomeView {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-
-        BessonovCardsSQLiteOpenHelper openHelper = new BessonovCardsSQLiteOpenHelper(this);
         homePresenter =
-                new HomePresenter(
-                        this,
-                        new HomeInteractor(
-                                new AddNewCardUseCase(
-                                        new SqliteCardRepository(
-                                                openHelper),
-                                        "not set"),
-                                new GetAllCategoriesUseCase(
-                                        new SqliteCategoryRepository(
-                                                openHelper)),
-                                new GetCardsForTodayUseCase(
-                                        new SqliteCardRepository(
-                                                openHelper),
+                DaggerHomeComponent
+                        .builder()
+                        .contextModule(
+                                new ContextModule(this))
+                        .homeModule(
+                                new HomeModule(
+                                        "not set",
                                         new HashSet<>(
                                                 Arrays.asList(
                                                         "not set",
-                                                        "learned")))),
-                        new CategoryMapper(
-                                new SqliteCardRepository(
-                                        openHelper)));
+                                                        "learned")),
+                                        this))
+                        .build()
+                        .getHomePresenter();
 
         recyclerView = (RecyclerView) findViewById(R.id.recycler_view);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
